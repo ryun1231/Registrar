@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grading Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin-left: 100px;
+            margin-right: 100px;
+            margin-top: 50px;
+            background-color: #f7f7f7;
+        }
+        .form-container {
+            border: 1px solid #000;
+            padding: 20px;
+            width: 900px;
+            margin: 20px auto;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            background-color: #fff;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: inline-block;
+            width: 150px;
+            vertical-align: top;
+        }
+        .form-group input, .form-group select {
+            width: 200px;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+        .form-group .term-input {
+            width: 100px;
+        }
+        .form-group .subject-input {
+            width: 200px;
+        }
+        .form-group .subject-title-input {
+            width: 300px;
+        }
+        .form-group .school-year-select {
+            width: 100px;
+        }
+        .button-container {
+            text-align: right;
+        }
+        .button-container button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+        }
+        .links-container {
+            margin-top: 20px;
+            margin-left: 350px;
+        }
+        .links-container a {
+            margin-right: 15px;
+            text-decoration: none;
+            color: #007BFF;
+        }
+        .links-container a:visited {
+            color: #007BFF;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 5px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <form>
+            <div class="form-group">
+                <label for="gradesFor">Grades for:</label>
+                <select id="gradesFor" name="gradesFor">
+                    <!-- Options can be added here -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="schoolYear">School Year:</label>
+                <select id="schoolYearStart" name="schoolYearStart" class="school-year-select" onchange="setEndYear()">
+                    <!-- Options will be populated by JavaScript -->
+                </select>
+                -
+                <select id="schoolYearEnd" name="schoolYearEnd" class="school-year-select" disabled>
+                    <!-- End year will be set by JavaScript -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="term">Term:</label>
+                <select id="term" name="term">
+                    <option value="1st Sem">1st Sem</option>
+                    <option value="2nd Sem">2nd Sem</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="employeeIdName">Employee ID/Name:</label>
+                <input type="text" id="employeeIdName" name="employeeIdName">
+            </div>
+            <div class="form-group">
+                <label for="sectionHandled">Section Handled:</label>
+                <input type="text" id="sectionHandled" name="sectionHandled" class="subject-input">
+                <label for="subjectHandled" style="margin-left: 15px;">Subject Handled:</label>
+                <input type="text" id="subjectHandled" name="subjectHandled" class="subject-input">
+            </div>
+            <div class="button-container">
+                <button type="button" onclick="proceed()">Proceed</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="links-container">
+        <a href="#">View/Print Final Grading Sheet</a>
+        <a href="#">View/Print ECR</a>
+            <input type="checkbox" id="verify" name="verify">
+            <label for="verify">Click to <a href="#">Verify</a> Finals Grade</label>
+    </div>
+    <div class="form-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>SL #</th>
+                    <th>Student ID</th>
+                    <th>Student Name</th>
+                    <th>Course</th>
+                    <th>Year</th>
+                    <th>Credits Earned</th>
+                    <th>Grade</th>
+                    <th>Remarks</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function proceed() {
+            alert("Proceed button clicked!");
+        }
+
+        function setEndYear() {
+            const startYear = document.getElementById('schoolYearStart').value;
+            const endYear = parseInt(startYear) + 1;
+            document.getElementById('schoolYearEnd').innerHTML = `<option value="${endYear}">${endYear}</option>`;
+        }
+
+        function populateYears() {
+            const startYearSelect = document.getElementById('schoolYearStart');
+            const currentYear = new Date().getFullYear();
+            for (let year = 2000; year <= currentYear; year++) {
+                startYearSelect.innerHTML += `<option value="${year}">${year}</option>`;
+            }
+        }
+
+        window.onload = function() {
+            populateYears();
+            setEndYear(); // Set initial end year based on the current selection
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body, html {
+      margin-top: 25px;
+      font-family: Arial, sans-serif; /* Added a default font */
+    }
+    .residency-status h3 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+      background-color: #b3b3b3; /* Gray background color */
+      padding: 5px; /* Padding for the background */
+      border-radius: 3px; /* Optional rounded corners */
+    }
+    .input-container {
+      display: flex;
+      justify-content: space-between; 
+      align-items: flex-start; 
+    }
+    .student-id {
+      flex: 1; 
+      display: flex;
+      align-items: center;
+    }
+    .student-id span {
+      margin-right: 10px;
+      font-weight: bold;
+    }
+    .student-id input {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+    .checkboxes {
+      width: 52%;
+      display: flex;
+      flex-direction: column;
+    }
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 10px;
+    }
+    .checkbox-label input[type="checkbox"] {
+      margin-right: 10px;
+    }
+    .student-info-container {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .student-info,
+    .student-info2 {
+      width: 45%;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+    .student-info p,
+    .student-info2 p {
+      margin-bottom: 8px;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    .student-id .search-button {
+      display: inline-flex;
+      align-items: center;
+      padding: 10px;
+      background-color: #ccc;
+      border: 1px solid #ccc;
+      border-left: none;
+      cursor: pointer;
+      border-radius: 0 4px 4px 0;
+      margin-left: 10px;
+    }
+    .student-id .refresh-button {
+      display: inline-flex;
+      align-items: center;
+      padding: 10px;
+      background-color: #ccc;
+      border: 1px solid #ccc;
+      border-right: none;
+      cursor: pointer;
+      border-radius: 4px 0 0 4px;
+      margin-right: 10px;
+    }
+    hr {
+      border: 0.5px solid #c0bfbf;
+      margin-bottom: 30px;
+    }
+    .tor-heading {
+      text-align: center;
+      margin-bottom: 20px; 
+      background-color: #b3b3b3; 
+      padding: 5px; 
+      border-radius: 3px; 
+      margin-top: 85px;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 20px; 
+    }
+    th,
+    td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: center;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    .content {
+      padding: 20px;
+    }
+    .radio-buttons {
+      position: absolute;
+      top: 0px;
+      left: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 5px;
+      border-radius: 5px;
+    }
+    .radio-buttons label {
+      display: flex;
+      align-items: center;
+    }
+    .print-button {
+      position: absolute;
+      top: 0px;
+      right: 20px;
+      display: flex;
+      align-items: center;
+      padding: 5px;
+      border-radius: 5px;
+      background-color: #f1f1f1; /* Background for better visibility */
+      border: 1px solid #ddd; /* Border for visual separation */
+    }
+    .print-button .print {
+      display: flex;
+      align-items: center;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+    }
+    .print-button .print img {
+      width: 24px; /* Size of the print icon */
+      height: auto;
+      margin-right: 5px; /* Space between icon and text */
+    }
+    .print-button .print span {
+      font-size: 16px;
+      color: #000;
+    }
+    .table-container {
+      position: relative;
+    }
+    .bold-italic {
+      font-weight: bold;
+      font-style: italic;
+    }
+  </style>  
+</head>
+<body>
+  <div class="container">
+    <main class="content">
+      <div class="residency-status">
+        <h3>CURRICULUM RESIDENCY STATUS</h3>
+        <div class="input-container">
+          <div class="student-id">
+            <button class="refresh-button" onclick="location.reload();">&#x21bb;</button>
+            <span>Student ID:</span>
+            <input type="text" id="studentId">
+            <button class="search-button">&#x1F50D;</button>
+          </div>
+          <div class="checkboxes">
+            <label for="hide-units" class="checkbox-label">
+              <input type="checkbox" id="hide-units">
+              Hide Units Required and Units Completion Information
+            </label>
+            <label for="hide-gwa" class="checkbox-label">
+              <input type="checkbox" id="hide-gwa">
+              Hide GWA Information
+            </label>
+          </div>
+        </div>
+        <hr> <!-- Horizontal line before the table -->
+        <!-- Container for student information -->
+        <div class="student-info-container">
+          <div class="student-info">
+            <p>Student Name: </p>
+            <p>Course/Major: </p>
+            <p>GWA: </p>
+          </div>
+          <div class="student-info2">
+            <p>Year: </p>
+            <p>Status: </p>
+            <p>Total units required to this course: </p>
+            <p>Total Credit Earned: </p>
+          </div>
+        </div>
+        <!-- Table Container for positioning radio buttons and print button -->
+        <div class="table-container">
+          <!-- Radio Buttons for Course Selection -->
+          <div class="radio-buttons">
+            <label>
+              <input type="radio" name="course" value="course" checked>
+              COURSE
+            </label>
+            <label>
+              <input type="radio" name="course" value="bsit">
+              BACHELOR OF SCIENCE IN INFORMATION TECHNOLOGY
+            </label>
+          </div>
+          <!-- Print Button -->
+          <div class="print-button">
+            <button class="print" aria-label="Print" onclick="window.print()">
+              <img src="print.png" alt="Print Icon">
+              <span>Print</span>
+            </button>
+          </div>
+        </div>
+        <h3 class="tor-heading">TOR ENTRIES FROM CURRENT SCHOOL</h3>
+        <!-- Table displaying student subjects and their details -->
+        <table>
+          <thead>
+            <tr>
+              <th>Course Code</th>
+              <th>Course Description</th>
+              <th colspan="2">Units</th>
+              <th>Credits Earned</th>
+              <th>Grade</th>
+              <th>Remarks</th>
+            </tr>
+            <tr>
+              <th></th>
+              <th></th>
+              <th>Lecture</th>
+              <th>Laboratory</th>
+              <th colspan="3"></th>
+            </tr>
+            <tr>
+              <th>1st Year/ 1st Semester, SY 2022-2023</th>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
+          <tbody id="studentTable">
+            <!-- Data for 1st Year/ 1st Semester, SY 2022-2023 -->
+            <tr>
+              <td>CCC121-18</td>
+              <td>Intermediate Programming</td>
+              <td>2.0</td>
+              <td>0.0</td>
+              <td>2</td>
+              <td>1.25</td>
+              <td>Passed</td>
+            </tr>
+            <tr>
+              <td>CCL121-18</td>
+              <td>Intermediate Programming(Lab)</td>
+              <td>0.0</td>
+              <td>1.0</td>
+              <td>1</td>
+              <td>1.75
+                <td>Passed</td>
+              </tr>
+              <tr>
+                <td>PE 1 PF 18</td>
+                <td>Physical Fitness</td>
+                <td>2.0</td>
+                <td>0.0</td>
+                <td>2</td>
+                <td>1.5</td>
+                <td>Passed</td>
+              </tr>
+              <tr>
+                <td colspan="7" class="bold-italic">Total units completed for 1st Year/ 1st Semester, SY 2022-2023: 26.0</td>
+              </tr>
+              <tr>
+                <th>1st Year/ 2nd Semester, SY 2022-2023</th>
+                <th colspan="3"></th>
+              </tr>
+              <tbody id="studentTable">
+                <!-- Data for 1st Year/ 1st Semester, SY 2022-2023 -->
+                <tr>
+                  <td>CCC121-18</td>
+                  <td>Intermediate Programming</td>
+                  <td>2.0</td>
+                  <td>0.0</td>
+                  <td>2</td>
+                  <td>1.25</td>
+                  <td>Passed</td>
+                </tr>
+                <tr>
+                  <td>CCL121-18</td>
+                  <td>Intermediate Programming(Lab)</td>
+                  <td>0.0</td>
+                  <td>1.0</td>
+                  <td>1</td>
+                  <td>1.75
+                    <td>Passed</td>
+                  </tr>
+                  <tr>
+                    <td>PE 1 PF 18</td>
+                    <td>Physical Fitness</td>
+                    <td>2.0</td>
+                    <td>0.0</td>
+                    <td>2</td>
+                    <td>1.5</td>
+                    <td>Passed</td>
+                  </tr>
+              <tfoot>
+              <tr>
+                <td colspan="7" class="bold-italic">Total units completed for 1st Year/ 2nd Semester, SY 2022-2023: 22.0</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </main>
+    </div>
+  </body>
+  </html>
+  

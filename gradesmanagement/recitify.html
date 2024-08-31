@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade Modification Form</title>
+    <style>
+         body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .form-container {
+            width: 800px;
+            margin: auto;
+            border: 1px solid #ddd;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        label {
+            display: inline-block;
+            width: 120px;
+        }
+        input, select, button {
+            padding: 5px;
+            width: calc(100% - 130px);
+            margin-left: 5px;
+        }
+        select#grades-for {
+            width: calc(100% - 700px);
+        }
+        input#student-id{
+            width: calc(100% - 600px);
+        }
+        button {
+            width: auto;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid #800080;
+            margin: 20px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        button, a.button {
+            width: auto;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        button:hover, a.button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Grade Modification</h2>
+        <form action="#" method="post">
+            <div class="form-group">
+                <label for="student-id">Student ID:</label>
+                <input type="text" id="student-id" name="student-id" value="21-0001-0001">
+            </div>
+            <div class="form-group">
+                <label for="grades-for">Grades for:</label>
+                <select id="grades-for" name="grades-for">
+                    <option value="1st Sem">1st Sem</option>
+                    <option value="2nd Sem">2nd Sem</option>
+                    <option value="Finals">Finals</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="school-year">School Year:</label>
+                <input type="text" id="school-year" name="school-year" value="2023" style="width: 60px;">
+                <label for="term" style="width: auto;">-</label>
+                <input type="text" id="term" name="term" value="2024" style="width: 60px;">
+                <select id="term-select" name="term-select" style="width: 100px;">
+                    <option value="term1">1st Term</option>
+                    <option value="term2">2nd Term</option>
+                </select>
+                <button type="submit">Proceed</button>
+            </div>
+            <hr>
+            <div class="form-group">
+                <label for="student-name">Student Name:</label>
+                <span id="student-name">Hiro Ishida</span>
+            </div>
+            <div class="form-group">
+                <label for="course-major">Course/Major:</label>
+                <span id="course-major">BSIT</span>
+            </div>
+            <div class="form-group-inline">
+                <div class="form-group">
+                    <label for="year">Year:</label>
+                    <span id="year">3</span>
+                </div>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Subject Code</th>
+                        <th>Subject Name/Desc</th>
+                        <th>Credits Earned</th>
+                        <th>Instructor</th>
+                        <th>Grade</th>
+                        <th>Remarks</th>
+                        <th>Edit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>000001</td>
+                        <td>Network Management</td>
+                        <td>3.0</td>
+                        <td>Instructor 1</td>
+                        <td>1.0</td>
+                        <td>Passed</td>
+                        <td><a href="editgrade.html" class="button">Edit</a></td>
+                    </tr>
+                    <tr>
+                        <td>000002</td>
+                        <td>Capstone Project 1</td>
+                        <td>0.0</td>
+                        <td>Instructor 2</td>
+                        <td>DRP</td>
+                        <td>Dropped</td>
+                        <td><a href="editgrade.html" class="button">Edit</a></td>
+                    </tr>
+                    <tr>
+                        <td>000003</td>
+                        <td>IT Elective 4</td>
+                        <td>2.0</td>
+                        <td>Instructor 3</td>
+                        <td>1.0</td>
+                        <td>Passed</td>
+                        <td><a href="editgrade.html" class="button">Edit</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Student Information</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 1200px;
+            padding: 40px;
+            box-sizing: border-box;
+            position: relative;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header .back {
+            display: flex;
+            align-items: center;
+            font-size: 18px;
+            color: #3FA2F6;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .header .back i {
+            margin-right: 10px;
+        }
+
+        .header .back:hover {
+            color: #007bb5;
+        }
+
+        .header h2 {
+            margin: 0;
+            text-align: center;
+            flex-grow: 1;
+            color: #333;
+        }
+
+        .header .edit-history {
+            display: flex;
+            align-items: center;
+            font-size: 18px;
+            color: #3FA2F6;
+            transition: color 0.3s;
+        }
+
+        .header .edit-history a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .header .edit-history:hover {
+            color: #007bb5;
+        }
+
+        .header .edit-history i {
+            margin-left: 10px;
+        }
+
+        .info-section {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .info-section div {
+            width: 30%;
+            min-width: 200px;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+
+        .info-section div span {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .info-section div p {
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+            background-color: #f9f9f9;
+            margin: 0;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .grid-item {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+            position: relative;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+        }
+
+        .grid-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .grid-item span {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .grid-item i {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 18px;
+            color: #007bb5;
+        }
+
+        .grid-item:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .grid-item a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="official-transcript-of-records-of-candidate-for-graduation.html" class="back">
+                <i class="fas fa-arrow-left"></i>
+                RETURN
+            </a>
+            <h2>Update Student Information</h2>
+            <div class="edit-history">
+                <a href="history-page.html">
+                    Check edit history
+                    <i class="fas fa-history"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <div>
+                <span>Course:</span>
+                <p>Course Name</p>
+            </div>
+            <div>
+                <span>Curriculum Year:</span>
+                <p>2023-2024</p>
+            </div>
+            <div>
+                <span>Academic Year:</span>
+                <p>2023-2024</p>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <div>
+                <span>Major:</span>
+                <p>Major Name</p>
+            </div>
+            <div>
+                <span>Year Level/Term:</span>
+                <p>3rd Year/1st Term</p>
+            </div>
+        </div>
+
+        <div class="grid-container">
+            <div class="grid-item">
+                <a href="#personal-data">
+                    <i class="fas fa-edit"></i>
+                    <span>Personal Data</span>
+                </a>
+            </div>
+            <div class="grid-item">
+                <a href="#alien-status-data">
+                    <i class="fas fa-edit"></i>
+                    <span>Alien Status Data <br>(alien/foreigner students only)</span>
+                </a>
+            </div>
+            <div class="grid-item">
+                <a href="#residence-data">
+                    <i class="fas fa-edit"></i>
+                    <span>Residence Data</span>
+                </a>
+            </div>
+            <div class="grid-item">
+                <a href="#physical-description">
+                    <i class="fas fa-edit"></i>
+                    <span>Physical Description</span>
+                </a>
+            </div>
+            <div class="grid-item">
+                <a href="#family-data">
+                    <i class="fas fa-edit"></i>
+                    <span>Family Data</span>
+                </a>
+            </div>
+            <div class="grid-item">
+                <a href="#educational-background">
+                    <i class="fas fa-edit"></i>
+                    <span>Educational Background</span>
+                </a>
+            </div>
+            <div class="grid-item">
+                <a href="#general-qualification">
+                    <i class="fas fa-edit"></i>
+                    <span>General Qualification</span>
+                </a>
+            </div>
+            <div class="grid-item">
+                <a href="#references">
+                    <i class="fas fa-edit"></i>
+                    <span>References</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

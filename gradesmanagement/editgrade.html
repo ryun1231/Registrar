@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade Modification Form</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .form-container {
+            width: 850px;
+            margin: auto;
+            border: 1px solid #ddd;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group-inline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        label {
+            display: inline-block;
+            width: 140px;
+        }
+        input, select, button, a.button {
+            padding: 5px;
+            width: calc(100% - 150px);
+            margin-left: 5px;
+        }
+        select#grades-for {
+            width: calc(100% - 160px);
+        }
+        input#student-id {
+            width: calc(100% - 200px);
+        }
+        button, a.button {
+            width: auto;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        button:hover, a.button:hover {
+            background-color: #0056b3;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid #800080;
+            margin: 20px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        .button-link {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .save-button {
+            color: blue;
+            cursor: pointer;
+        }
+        .cancel-button {
+            color: red;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Grade Modification</h2>
+        <form action="#" method="post">
+            <div class="form-group">
+                <label for="student-id">Student ID:</label>
+                <input type="text" id="student-id" name="student-id" value="21-0001-0001">
+            </div>
+            <div class="form-group-inline">
+                <div class="form-group">
+                    <label for="grades-for">Grades for:</label>
+                    <input type="text" id="grades-for-display" name="grades-for-display" value="Finals">
+                </div>
+                <div class="form-group">
+                    <label for="school-year">School Year:</label>
+                    <input type="text" id="school-year" name="school-year" value="2023" style="width: 60px;">
+                    <label for="term" style="width: auto;">-</label>
+                    <input type="text" id="term" name="term" value="2024" style="width: 60px;">
+                    <select id="term-select" name="term-select" style="width: 100px;">
+                        <option value="1st Term">1st Term</option>
+                        <option value="2nd Term">2nd Term</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <a href="your-link-here.html" class="button">Proceed</a>
+                </div>
+            </div>
+            <hr>
+            <div class="form-group-inline">
+                <div class="form-group">
+                    <label for="student-name">Student Name:</label>
+                    <span id="student-name">Hiro Ishida</span>
+                </div>
+                <div class="form-group">
+                    <label for="course-major">Course/Major:</label>
+                    <span id="course-major">BSIT</span>
+                </div>
+                <div class="form-group">
+                    <label for="year">Year:</label>
+                    <span id="year">3</span>
+                </div>
+            </div>
+            <div class="form-group-inline">
+                <div class="form-group">
+                    <label for="grade-in-record">Grade in record:</label>
+                    <span id="grade-in-record">DRP</span>
+                </div>
+                <div class="form-group">
+                    <label for="new-grade">New Grade:</label>
+                    <input type="text" id="new-grade" name="new-grade" value="1.0">
+                </div>
+            </div>
+            <div class="form-group-inline">
+                <div class="form-group">
+                    <label for="remark-in-record">Remark in record:</label>
+                    <span id="remark-in-record">Dropped</span>
+                </div>
+                <div class="form-group">
+                    <label for="new-remark">New Remark:</label>
+                    <input type="text" id="new-remark" name="new-remark" value="Passed">
+                </div>
+            </div>
+            <div class="form-group-inline">
+                <div class="form-group">
+                    <label for="credits-in-record">Credits earned in record:</label>
+                    <span id="credits-in-record">0.0</span>
+                </div>
+                <div class="form-group">
+                    <label for="new-credits">New Credits Earned:</label>
+                    <input type="text" id="new-credits" name="new-credits" value="2.0">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="reason-for-change">Reason for change:</label>
+                <input type="text" id="reason-for-change" name="reason-for-change" value="Error in encoding" style="width: calc(100% - 150px);">
+            </div>
+            <div class="form-group">
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" value="2023-01-10" style="width: calc(100% - 150px);">
+            </div>
+            <div class="button-link">
+                <span class="save-button">Save</span> click to save changes &nbsp; | &nbsp; 
+                <span class="cancel-button">Cancel</span> click to cancel edit
+            </div>
+        </form>
+        <table>
+            <thead>
+                <tr>
+                    <th>Subject Code</th>
+                    <th>Subject Name/Desc</th>
+                    <th>Credits Earned</th>
+                    <th>Instructor</th>
+                    <th>Grade</th>
+                    <th>Remarks</th>
+                    <th>Edit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>000001</td>
+                    <td>Network Management</td>
+                    <td>3.0</td>
+                    <td>Instructor 1</td>
+                    <td>1.0</td>
+                    <td>Passed</td>
+                    <td><a href="editgrade.html" class="button">Edit</a></td>
+                </tr>
+                <tr>
+                    <td>000002</td>
+                    <td>Capstone Project 1</td>
+                    <td>0.0</td>
+                    <td>Instructor 2</td>
+                    <td>DRP</td>
+                    <td>Dropped</td>
+                    <td><a href="editgrade.html" class="button">Edit</a></td>
+                </tr>
+                <tr>
+                    <td>000003</td>
+                    <td>IT Elective 4</td>
+                    <td>2.0</td>
+                    <td>Instructor 3</td>
+                    <td>1.0</td>
+                    <td>Passed</td>
+                    <td><a href="editgrade.html" class="button">Edit</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

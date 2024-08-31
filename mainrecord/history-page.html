@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change History Log</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        h2 {
+            margin-top: 40px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 8px; 
+            text-align: left;
+            border: 1px solid #ddd;
+            vertical-align: top; 
+        }
+        th {
+            background-color: #555;
+            color: white;
+            text-align: center; 
+        }
+        td {
+            background-color: #f9f9f9;
+        }
+        .return-button {
+            padding: 10px 20px;
+            background-color: #555;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        .return-button:hover {
+            background-color: #333;
+        }
+        .search-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .search-container .search-box {
+            display: flex;
+        }
+        .search-container input {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px 0 0 5px;
+            outline: none;
+        }
+        .search-container button {
+            padding: 8px;
+            border: 1px solid #ccc;
+            background-color: #555;
+            color: white;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            outline: none;
+        }
+        .search-container button:hover {
+            background-color: #333;
+        }
+        .filter-container {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        .filter-container .filter-options {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+            flex-direction: column;
+        }
+        .filter-container:hover .filter-options {
+            display: flex;
+        }
+        .filter-options label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        .filter-options input {
+            margin-right: 5px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: flex-end;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Change History</h2>
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" placeholder="Search...">
+                <button>🔍</button>
+            </div>
+            <div class="filter-container">
+                <button>Filter Options</button>
+                <div class="filter-options">
+                    <label><input type="radio" name="sort" value="name">Name</label>
+                    <label><input type="radio" name="sort" value="date">Date</label>
+                    <label><input type="radio" name="order" value="ascending">Ascending</label>
+                    <label><input type="radio" name="order" value="descending">Descending</label>
+                </div>
+            </div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Employee ID</th>
+                    <th>Name</th>
+                    <th>Description/Changes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>07/19/2024<br>12:24:30 PM</td>
+                    <td>12-2345-678</td>
+                    <td>John Doe</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="button-container">
+            <a href="modification-of-data.html" class="return-button">Return</a>
+        </div>
+    </div>
+</body>
+</html>

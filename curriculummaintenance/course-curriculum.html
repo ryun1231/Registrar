@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>major Without Credit Unit</title>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .content {
+            margin-left: 60px;
+            padding: 20px;
+            transition: margin-left 0.3s;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        h2 {
+            margin-left: 100px;
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        p {
+            color: #666;
+        }
+
+        .filters-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .filter {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .filter label {
+            margin-top: 25px;
+        }
+
+        .filter select {
+            width: 500px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .proceed-button {
+            background-color: dodgerblue;
+            color: white;
+            text-decoration: none; /* Removes underline from the link */
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-left: 20px; /* Add some space between the button and the filters */
+            display: inline-block; /* Ensures the link behaves like a button */
+        }
+
+        .proceed-button:hover {
+            background-color: deepskyblue;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!--DITO KAYO MAGLALAGAY-->
+    <div class="content">
+        <h2>COURSE CURRICULUM MAINTENANCE</h2>
+
+        <div class="filter-container">
+            <div class="filter programs">
+                <label for="programs">PROGRAMS:</label>
+                <select id="programs">
+                <option value="">-- Select Programs --</option>
+                <option value="programs1">Bachelor of Library and Information Science</option>
+                <option value="programs2">Bachelor of Science in Computer Science</option>
+                <option value="programs4">Bachelor of Science in Information Technology</option>
+                <option value="programs5">Bachelor of Science in Information System</option>
+                </select>
+            </div>
+
+            <div class="filter course">
+                <label for="course">COURSE:</label>
+                <select id="course">
+                <option value="">-- Select Course --</option>
+                <option value="programs1">Bachelor of Library and Information Science</option>
+                <option value="programs2">Bachelor of Science in Computer Science</option>
+                <option value="programs4">Bachelor of Science in Information Technology</option>
+                <option value="programs5">Bachelor of Science in Information System</option>
+                </select>
+            </div>
+
+            <div class="filter major">
+                <label for="major">MAJOR:</label>
+                <select id="major">
+                <option value="">-- Select Major --</option>
+                <option value="major1">500311102 (Works With Others)</option>
+                <option value="major2">500311103 (Demonstrate Work Values)</option>
+                <option value="major3">ABM-01-18 (Principles of Marketing)</option>
+                <option value="major4">ABM-02-18 (Fundamentals of Acconting)</option>
+                <option value="major5">ABM-03-18 (Basic Finance)</option>
+                <option value="major6">ABM-04-18 (Organization and Management)</option>
+                </select>
+            </div>
+
+            <div class="button-container">
+                <a href="proceed-courses.html" class="proceed-button">Proceed</a>
+            </div>
+        </div>
+    </div>    
+   
+</body>
+
+</html>

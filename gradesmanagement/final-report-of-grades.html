@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Aligned Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            text-align: center; /* Center align text within body */
+        }
+        .container {
+            border: 1px solid #ddd;
+            padding: 20px;
+            background-color: white;
+            width: 700px;
+            margin: 50px auto; /* Center align and add margin on top */
+            position: relative;
+            text-align: left; /* Align form elements to the left */
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: inline-block;
+            width: 130px;
+            font-weight: bold;
+            vertical-align: top;
+        }
+        .form-group input,
+        .form-group select {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .form-group .inline {
+            display: inline-block;
+            width: auto;
+        }
+        .form-group .short {
+            width: 80px; /* Increased width for better visibility */
+        }
+        .form-group .medium {
+            width: 100px;
+        }
+        .form-group .long {
+            width: 200px; /* Increased width for better visibility */
+        }
+        .form-group .spaced {
+            margin-right: 20px; /* Add space between fields */
+        }
+        .button-group {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .button-group button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Final Report of Grades</h2>
+        <div class="form-group">
+            <label for="grades">Grades for:</label>
+            <select id="grades" class="long"></select>
+        </div>
+        <div class="form-group">
+            <label for="school-year-start" class="inline">School Year:</label>
+            <select id="school-year-start" class="short inline" style="margin-left: 33px;"></select> - 
+            <select id="school-year-end" class="short inline"></select>
+        </div>
+        <div class="form-group">
+            <label for="term">Term:</label>
+            <select id="term" class="long"></select>
+        </div>
+        <div class="form-group">
+            <label for="employee-id">Employee ID/Name:</label>
+            <input type="text" id="employee-id" class="long">
+        </div>
+        <div class="form-group">
+            <label for="section-handled">Section Handled:</label>
+            <input type="text" id="section-handled" class="medium spaced">
+            <label for="subject-handled">Subject Title:</label>
+            <input type="text" id="subject-handled" class="medium">
+        </div>
+        <div class="button-group">
+            <button class="proceed-btn" id="proceed-button">Proceed</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Populate school year dropdown
+            const schoolYearStart = document.getElementById('school-year-start');
+            const schoolYearEnd = document.getElementById('school-year-end');
+            const termDropdown = document.getElementById('term');
+
+            // Assuming the school years range from 2000 to 2025
+            for (let year = 2000; year <= 2025; year++) {
+                const option = document.createElement('option');
+                option.value = year;
+                option.textContent = year;
+                schoolYearStart.appendChild(option);
+            }
+
+            schoolYearStart.addEventListener('change', function() {
+                const selectedYear = parseInt(schoolYearStart.value);
+                if (!isNaN(selectedYear)) {
+                    schoolYearEnd.innerHTML = ''; // Clear existing options
+                    for (let year = selectedYear; year <= 2025; year++) {
+                        const option = document.createElement('option');
+                        option.value = year;
+                        option.textContent = year;
+                        schoolYearEnd.appendChild(option);
+                    }
+                }
+            });
+
+            // Populate term dropdown
+            const terms = ['1st Term', '2nd Term'];
+            terms.forEach(term => {
+                const option = document.createElement('option');
+                option.value = term;
+                option.textContent = term;
+                termDropdown.appendChild(option);
+            });
+        });
+
+        document.getElementById('proceed-button').addEventListener('click', function() {
+            window.location.href = 'report.html'; // Replace with your URL
+        });
+    </script>
+</body>
+</html>

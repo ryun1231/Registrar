@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>major Without Credit Unit</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .content {
+            margin-left: 60px;
+            padding: 20px;
+            transition: margin-left 0.3s;
+            height: 100vh;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center content vertically */
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        h2 {
+            margin-top: 30px;
+        }
+        h3 {
+            margin-top: 20px;
+        }
+        h4 {
+            color: #3333ff;
+            text-decoration-line: underline;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #666;
+        }
+
+        .input-container
+        {
+            text-align: center;
+        }
+
+        input[type="text"] {
+        width: 100px;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        }
+
+        #to {
+        margin-left: 50px;
+        margin-right: 20px;
+        }
+        
+        hr{
+        border-collapse: collapse;
+        width: 100%;
+        }
+
+        /* For Subject List Dropdown Choices */
+        .container {
+            margin: 20px auto;
+            width: 500px;
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px; /* Space between dropdowns */
+            justify-content: center ;
+        }
+
+        label {
+            display: block;
+            margin: 5px 0;
+            width: 50px; /* Adjust width for alignment */
+        }
+
+        select {
+            width: 150px; /* Adjust width as needed */
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+
+
+    </style>
+</head>
+
+<body>
+
+    <!--DITO KAYO MAGLALAGAY-->
+    <div class="content">
+        <h2>COURSE CURRICULUM MAINTENANCE PAGE</h2>
+        <h3>Please select a course/curriculum year information.</h3>
+
+        <h2>Curriculum Year</h2> 
+        <div class="input-container"> 
+            <input type="text" id="from">
+            <span id="to">To</span>
+            <input type="text" id="to">
+            <h3>Existing Cur Year:</h3>
+            <h4>(2015-2016)  (2018-2019)</h4>
+        </div>
+        <hr>
+
+        <div class="container">
+            <label for="year">Year:</label>
+            <select id="year">
+                <option value="">-- Year --</option>
+                <option value="subject1">1st</option>
+                <option value="subject2">2nd</option>
+                <option value="subject3">3rd</option>
+                <option value="subject4">4th</option>
+            </select>
+
+            <label for="term">Term:</label>
+            <select id="term">
+                <option value="">-- Term --</option>
+                <option value="subject1">1st Sem</option>
+                <option value="subject2">2nd Sem</option>
+            </select>
+        </div>
+
+
+    </div>    
+
+
+   
+</body>
+
+</html>

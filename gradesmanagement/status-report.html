@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grades Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-direction: column;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .container, .table-container {
+            width: 100%;
+            max-width: 800px; /* Adjusted width */
+            margin: 10px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            background-color: #fff;
+        }
+        .header {
+            font-weight: bold;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input[type="text"],
+        .form-group select {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .form-group select.term {
+            width: 150px; /* Smaller width for term dropdown */
+        }
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px; /* Adjusted gap */
+        }
+        .row .form-group {
+            flex: 1 1 calc(50% - 20px); /* Adjusted width calculation */
+        }
+        .row .form-group.half-width {
+            flex: 1 1 calc(50% - 10px); /* Adjusted width for half-width elements */
+        }
+        .school-year-container {
+            display: flex; /* Aligns the children horizontally */
+            gap: 10px; /* Space between the fields */
+        }
+        .school-year-container .form-group {
+            flex: 1; /* Make both fields take equal space */
+        }
+        .radio-group, .checkbox-group {
+            display: flex;
+            align-items: center;
+        }
+        .radio-group input[type="radio"],
+        .checkbox-group input[type="checkbox"] {
+            margin-right: 5px;
+        }
+        .radio-group label,
+        .checkbox-group label {
+            margin-right: 15px;
+            margin-bottom: 0;
+        }
+        .underline {
+            border-top: 2px solid purple;
+            margin: 15px 0;
+        }
+        .buttons {
+            display: flex;
+            justify-content: flex-end;
+        }
+        .buttons input[type="button"] {
+            padding: 10px 20px;
+            margin-left: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .buttons input[type="button"]:hover {
+            background-color: #0056b3;
+        }
+        .encoding-date {
+            text-align: center;
+        }
+        .encoding-date input[type="button"] {
+            padding: 10px 20px;
+            margin-top: 20px;
+        }
+        .table-container {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        .table-container th, .table-container td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+        .table-container th {
+            background-color: #f0f0f0;
+            font-weight: bold;
+        }
+        .table-container th:first-child {
+            border-top-left-radius: 5px;
+        }
+        .table-container th:last-child {
+            border-top-right-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="form-group">
+                <label for="term">Term:</label>
+                <select id="term" name="term" class="term">
+                    <option value="1st Sem">1st Sem</option>
+                    <option value="2nd Sem">2nd Sem</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="school-year">School Year:</label>
+                <div class="school-year-container">
+                    <div class="form-group">
+                        <select id="start-year" name="start-year" onchange="setEndYear()">
+                            <option value="">Select Year</option>
+                            <option value="2023">2023</option>
+                            <option value="2024">2024</option>
+                            <option value="2025">2025</option>
+                            <option value="2026">2026</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="end-year" name="end-year" placeholder="End Year" readonly>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="grade-status">Grade Status:</label>
+            <div class="checkbox-group">
+                <input type="checkbox" id="show-all-verified" name="show-all-verified">
+                <label for="show-all-verified">Show all Verified</label>
+                <input type="checkbox" id="show-all-not-verified" name="show-all-not-verified">
+                <label for="show-all-not-verified">Show all not Verified</label>
+                <input type="checkbox" id="show-only-encoded" name="show-only-encoded">
+                <label for="show-only-encoded">Show only encoded but not complete</label>
+            </div>
+            <div class="radio-group">
+                <input type="radio" id="grades-encoded" name="grade-encoded-status" value="encoded">
+                <label for="grades-encoded">Grades Encoded</label>
+                <input type="radio" id="grades-not-encoded" name="grade-encoded-status" value="not-encoded">
+                <label for="grades-not-encoded">Grades Not Encoded</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <label for="college">College:</label>
+                <input type="text" id="college" name="college">
+            </div>
+            <div class="form-group">
+                <label for="employee-id">Employee ID/Name:</label>
+                <input type="text" id="employee-id" name="employee-id">
+            </div>
+        </div>
+        <div class="buttons">
+            <input type="button" value="Proceed">
+        </div>
+
+    </div>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Faculty Code</th>
+                    <th>Faculty Name</th>
+                    <th>College/Dept Code</th>
+                    <th>Status</th>
+                    <th># Stud enrolled/ Student with grade</th>
+                    <th>Subject Code(desc)</th>
+                    <th>Section</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function setEndYear() {
+            const startYearSelect = document.getElementById('start-year');
+            const endYearInput = document.getElementById('end-year');
+            const startYear = parseInt(startYearSelect.value);
+            
+            if (startYear) {
+                endYearInput.value = startYear + 1;
+            } else {
+                endYearInput.value = '';
+            }
+        }
+    </script>
+</body>
+</html>

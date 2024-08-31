@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grades Management</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .container {
+            border: 1px solid #ddd;
+            padding: 20px;
+            width: 80%;
+            max-width: 1000px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .header p {
+            margin: 0;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .header a {
+            color: #000;
+            text-decoration: none;
+            border-bottom: 2px solid #000;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+        .form-group input[type="text"],
+        .form-group select {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+        .row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        .row .form-group {
+            flex: 1;
+            margin-right: 15px;
+        }
+        .row .form-group:last-child {
+            margin-right: 0;
+        }
+        .checkbox-group,
+        .radio-group {
+            display: flex;
+            align-items: center;
+        }
+        .checkbox-group input[type="checkbox"],
+        .radio-group input[type="radio"] {
+            margin-right: 5px;
+        }
+        .checkbox-group label,
+        .radio-group label {
+            margin-right: 15px;
+            font-size: 0.9em;
+        }
+        .buttons {
+            text-align: center;
+            margin-top: 15px;
+        }
+        .buttons input[type="button"] {
+            padding: 10px 20px;
+            
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #3FA2F6, #007bb5);background-color: #007bff;
+            transition: background 0.3s, transform 0.2s;
+            cursor: pointer;
+            font-size: 1em;
+            
+        }
+        .buttons input[type="button"]:hover {
+            background: linear-gradient(135deg, #007bb5, #3FA2F6);
+            transform: translateY(-2px);
+        }
+        .underline {
+            border-top: 2px solid purple;
+            margin: 15px 0;
+        }
+        .encoding-date {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .encoding-date input[type="button"] {
+            padding: 10px 20px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #3FA2F6, #007bb5);background-color: #007bff;
+            transition: background 0.3s, transform 0.2s;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        .encoding-date input[type="button"]:hover {
+            background: linear-gradient(135deg, #007bb5, #3FA2F6);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Encoding of Grades - Status Report</h2>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <label for="term">Term:</label>
+                <select id="term" name="term">
+                    <option value="1st Sem">1st Sem</option>
+                    <option value="2nd Sem">2nd Sem</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Start Year:</label>
+                <select id="start-year" name="start-year" onchange="setEndYear()">
+                    <option value="">Select Start Year</option>
+                    <option value="2023">2023</option>
+                    <option value="2024">2024</option>
+                    <option value="2025">2025</option>
+                    <option value="2026">2026</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>End Year:</label>
+                <input type="text" id="end-year" name="end-year" placeholder="End Year" readonly>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="grade-status">Grade Status for:</label>
+            <div class="checkbox-group">
+                <input type="checkbox" id="show-all-verified" name="show-all-verified">
+                <label for="show-all-verified">Show all Verified</label>
+                <input type="checkbox" id="show-all-not-verified" name="show-all-not-verified">
+                <label for="show-all-not-verified">Show all not Verified</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="radio-group">
+                <input type="radio" id="grades-encoded" name="grade-encoded-status" value="encoded">
+                <label for="grades-encoded">Grades Encoded</label>
+                <input type="radio" id="grades-not-encoded" name="grade-encoded-status" value="not-encoded">
+                <label for="grades-not-encoded">Grades Not Encoded</label>
+            </div>
+        </div>
+        <div class="buttons">
+            <input type="button" id="proceed-button1" value="Proceed">
+        </div>
+        <div class="underline"></div>
+        <div class="form-group">
+            <label for="college">College</label>
+            <input type="text" id="college" name="college">
+        </div>
+        <div class="form-group">
+            <label for="employee-id">Employee ID/Name</label>
+            <input type="text" id="employee-id" name="employee-id">
+        </div>
+        <div class="buttons">
+            <input type="button" id="proceed-button" value="Proceed">
+        </div>
+        <div class="encoding-date">
+            <input type="button" id="proceed-button2" value="Set Encoding Date">
+        </div>
+    </div>
+
+    <script>
+        function setEndYear() {
+            const startYearSelect = document.getElementById('start-year');
+            const endYearInput = document.getElementById('end-year');
+            const startYear = parseInt(startYearSelect.value);
+            
+            if (startYear) {
+                endYearInput.value = startYear + 1;
+            } else {
+                endYearInput.value = '';
+            }
+        }
+
+        document.getElementById('proceed-button').addEventListener('click', function() {
+            window.location.href = 'status-report.html'; // Replace with your URL
+        });
+        document.getElementById('proceed-button1').addEventListener('click', function() {
+            window.location.href = 'status-report.html'; // Replace with your URL
+        });
+        document.getElementById('proceed-button2').addEventListener('click', function() {
+            window.location.href = 'encoding-date.html'; // Replace with your URL
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade Encoding</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            padding: 20px;
+            width: 80%;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .header div {
+            display: flex;
+            align-items: center;
+        }
+        .header div label {
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        .header input[type="text"], .header input[type="date"] {
+            padding: 5px;
+            margin-left: 5px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .delete-btn {
+            cursor: pointer;
+            color: red;
+            font-weight: bold;
+        }
+        .delete-btn:hover {
+            color: darkred;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div>
+                <label for="examName">Exam Name:</label>
+                <input type="text" id="examName" placeholder="Enter Exam Name">
+            </div>
+            <div>
+                <label for="startDate">Grade Encoding Date:</label>
+                <input type="date" id="startDate">
+                <input type="date" id="endDate">
+            </div>
+            <button onclick="addRow()">Proceed</button>
+        </div>
+        <div style="text-align: left;">
+            <input type="checkbox" id="allowSpecificFaculty">
+            <label for="allowSpecificFaculty">Allow Specific Faculty</label>
+            <input type="text" id="employeeIdName" placeholder="Employee ID/Name">
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Exam Name</th>
+                    <th>Grade Encoding Date Range</th>
+                    <th>Faculty Emp ID</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody id="gradeTableBody">
+                <tr>
+                    <td>Finals</td>
+                    <td>1/12/2024 - 1/12/2024</td>
+                    <td>00001</td>
+                    <td><span class="delete-btn" onclick="deleteRow(this)">🗑️ Delete</span></td>
+                </tr>
+                <tr>
+                    <td>Finals</td>
+                    <td>1/12/2024 - 1/12/2024</td>
+                    <td>00001</td>
+                    <td><span class="delete-btn" onclick="deleteRow(this)">🗑️ Delete</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function deleteRow(element) {
+            const row = element.closest('tr');
+            row.remove();
+        }
+
+        function formatDate(date) {
+            const options = { year: 'numeric', month: 'numeric', day: 'numeric' };
+            return new Date(date).toLocaleDateString(undefined, options);
+        }
+
+        function addRow() {
+            const examName = document.getElementById('examName').value;
+            const startDate = document.getElementById('startDate').value;
+            const endDate = document.getElementById('endDate').value;
+            const employeeId = document.getElementById('employeeIdName').value;
+
+            if (examName && startDate && endDate) {
+                const tableBody = document.getElementById('gradeTableBody');
+                const newRow = tableBody.insertRow();
+
+                const examCell = newRow.insertCell(0);
+                const dateRangeCell = newRow.insertCell(1);
+                const facultyEmpIdCell = newRow.insertCell(2);
+                const deleteCell = newRow.insertCell(3);
+
+                examCell.innerText = examName;
+                dateRangeCell.innerText = `${formatDate(startDate)} - ${formatDate(endDate)}`;
+                facultyEmpIdCell.innerText = employeeId ? employeeId : 'N/A';
+                deleteCell.innerHTML = '<span class="delete-btn" onclick="deleteRow(this)">🗑️ Delete</span>';
+
+                // Clear the input fields
+                document.getElementById('examName').value = '';
+                document.getElementById('startDate').value = '';
+                document.getElementById('endDate').value = '';
+                document.getElementById('employeeIdName').value = '';
+            } else {
+                alert('Please fill in all fields');
+            }
+        }
+    </script>
+</body>
+</html>

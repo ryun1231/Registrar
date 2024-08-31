@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>major Without Credit Unit</title>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .content {
+            margin-left: 60px;
+            padding: 20px;
+            transition: margin-left 0.3s;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        h2 {
+            margin-left: 100px;
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        p {
+            color: #666;
+        }
+
+        .filters-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .filter {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .filter label {
+            margin-top: 25px;
+        }
+
+        .filter select {
+            width: 500px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .proceed-button {
+            background-color: dodgerblue;
+            color: white;
+            text-decoration: none; /* Removes underline from the link */
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-left: 20px; /* Add some space between the button and the filters */
+            display: inline-block; /* Ensures the link behaves like a button */
+        }
+
+        .proceed-button:hover {
+            background-color: deepskyblue;
+        }
+
+        /* For Subject List Dropdown Choices */
+        .container {
+            margin: 20px auto;
+            width: 500px;
+            padding: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px; /* Space between dropdowns */
+            justify-content: center ;
+        }
+
+        label {
+            display: block;
+            margin: 5px ;
+            width: 50px; /* Adjust width for alignment */
+        }
+
+        select {
+            width: 150px; /* Adjust width as needed */
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        hr{
+        border-collapse: collapse;
+        width: 100%;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!--DITO KAYO MAGLALAGAY-->
+    <div class="content">
+        <h2>Copy / Delete Curriculum</h2>
+
+        <div class="filter-container">
+
+            <div class="filter course">
+                <label for="course">COURSE:</label>
+                <select id="course">
+                <option value="">-- Select Course --</option>
+                <option value="programs1">Bachelor of Library and Information Science</option>
+                <option value="programs2">Bachelor of Science in Computer Science</option>
+                <option value="programs4">Bachelor of Science in Information Technology</option>
+                <option value="programs5">Bachelor of Science in Information System</option>
+                </select>
+            </div>
+
+            <br> 
+
+            <div class="container">
+                <label for="major">Major:</label>
+                <select id="major">
+                    <option value="">-- Major --</option>
+                    <option value="subject1">Bachelor</option>
+                    <option value="subject2">2nd</option>
+                </select>
+
+                <label for="year">Curriculum Year:</label>
+                <select id="year">
+                    <option value="">-- Curriculum Year --</option>
+                    <option value="subject1">2018-2019</option>
+                    <option value="subject2">2016-2017</option>
+                </select>
+            </div> 
+            
+            <br>
+            <br>
+            <hr>
+
+            <div class="container">
+                <label for="operation">Operation:</label>
+                <select id="operation">
+                    <option value="">-- Operation --</option>
+                    <option value="subject1">Edit Curriculum Year</option>
+                    <option value="subject2">Copy Curriculum</option>
+                    <option value="subject2">Delete Curriculum</option>
+                </select>
+            </div> 
+
+            <div class="button-container">
+                <a href="copy-delete-curriculum.html" class="proceed-button">Proceed</a>
+            </div>
+
+        </div>
+    </div>    
+   
+</body>
+</html>

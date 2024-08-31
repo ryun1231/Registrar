@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Management</title>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .header {
+            text-align: left;
+            padding: 20px;
+            padding-top: 50px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: relative;
+            top: 0;
+            width: 100%;
+            z-index: 3;
+        }
+
+        .header button {
+            padding: 8px;
+            border: 1px solid #ccc;
+            background-color: #555;
+            color: white;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            outline: none;
+            margin-right: 5px;
+            height: 40px; 
+        }
+
+        .header input {
+            padding: 8px;
+            width: 200px;
+            margin: 5px;
+            box-sizing: border-box;
+        }
+
+        .header hr {
+            margin: 10px 0;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 80px;
+            left: 0;
+            width: 170px;
+            height: calc(100% - 80px);
+            background-color: #686D76;
+            padding: 10px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+            z-index: 2;
+        }
+
+        .navbar h2 {
+            color: white;
+            margin: 0;
+            padding-bottom: 10px;
+            font-size: 24px;
+            border-bottom: 1px solid #ffffff50;
+            text-align: center;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .navbar ul li {
+            margin: 15px 0; 
+        }
+
+        .navbar ul li a {
+            color: #f2f2f2;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            padding: 10px; 
+            border-radius: 4px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .navbar ul li a:hover {
+            background-color: #ffffff20;
+            color: #fff;
+        }
+
+        .content {
+            background-color: #fff;
+            margin-left: 180px;
+            padding: 40px;
+            margin-top: 1%;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .program-section {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin: 10px 0;
+        }
+
+        .program-section div {
+            flex: 1;
+            min-width: 280px;
+            margin-bottom: 5px;
+        }
+
+        .program-section label {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .underline-input {
+            border: none;
+            border-bottom: 1px solid #000;
+            outline: none;
+            padding: 3px 0;
+            width: 200px;
+            font-size: 16px;
+            background-color: transparent;
+        }
+
+        .underline-input:focus {
+            border-bottom: 2px solid #3FA2F6;
+        }
+
+        .form-section {
+            margin-bottom: 30px;
+            padding-top: 30px;
+        }
+
+        .form-section h3 {
+            background-color: #ccc;
+            padding: 10px;
+            text-align: left;
+            margin: 0 -20px 10px -20px;
+        }
+
+        .form-section p {
+            color: #3FA2F6;
+        }
+
+        .form-section div {
+            margin-bottom: 10px;
+        }
+
+        .form-section label {
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .form-section input,
+        .form-section select {
+            padding: 6px;
+            width: calc(100% - 12px);
+            margin-bottom: 8px;
+            box-sizing: border-box;
+        }
+
+        .form-inline {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            align-items: center;
+        }
+
+        .form-inline>div {
+            flex: 1;
+            min-width: 180px;
+        }
+
+        .form-buttons {
+            text-align: center;
+        }
+
+        .form-buttons button,
+        .form-buttons a {
+            padding: 8px 16px;
+            margin: 5px;
+            background-color: #3FA2F6;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .form-buttons button:hover,
+        .form-buttons a:hover {
+            background-color: #2a83d0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div>
+            <label for="student-id">Student ID:</label>
+            <input type="text" id="student-id" name="student-id">
+            <button type="button">🔍</button>
+        </div>
+        <hr>
+        <div>
+            <p><b>Student ID:</b></p>
+            <p><b>Student Name: </b></p>
+        </div>
+    </div>
+
+    <div class="navbar">
+        <ul>
+            <li><a href="#personal-data">I-A Personal Data</a></li>
+            <li><a href="#alien-status">I-B Alien Status</a></li>
+            <li><a href="#residence-data">II - Residence Status</a></li>
+            <li><a href="#physical-description">III - Physical Description</a></li>
+            <li><a href="#family-data">IV - Family Data</a></li>
+            <li><a href="#education-background">V - Educational Background</a></li>
+            <li><a href="#general-qualification">VI - General Qualification</a></li>
+            <li><a href="#references">VII - References</a></li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <div class="program-section">
+            <div>
+                <label for="program">PROGRAM:</label>
+                <input type="text" id="program" name="program" class="underline-input">
+            </div>
+            <div>
+                <label for="yr-lvl-term">YEAR LEVEL/TERM:</label>
+                <input type="text" id="yr-lvl-term" name="yr-lvl-term" class="underline-input">
+            </div>
+        </div>
+        <div class="program-section">
+            <div>
+                <label for="major">MAJOR:</label>
+                <input type="text" id="major" name="major" class="underline-input">
+            </div>
+            <div>
+                <label for="school-year">SCHOOL YEAR:</label>
+                <input type="text" id="school-year" name="school-year" class="underline-input">
+            </div>
+        </div>
+        <div class="program-section">
+            <div>
+                <label for="curriculum-year">CURRICULUM YEAR:</label>
+                <input type="text" id="curriculum-year" name="curriculum-year" class="underline-input">
+            </div>
+        </div>
+
+        <!-- Personal Data Content -->
+        <div id="personal-data" class="form-section">
+            <h3>I-A Personal Data</h3>
+            <form>
+                <div class="form-inline">
+                    <div>
+                        <label for="last-name">Last Name:</label>
+                        <input type="text" id="last-name" name="last-name">
+                    </div>
+                    <div>
+                        <label for="first-name">First Name:</label>
+                        <input type="text" id="first-name" name="first-name">
+                    </div>
+                    <div>
+                        <label for="middle-name">Middle Name:</label>
+                        <input type="text" id="middle-name" name="middle-name">
+                    </div>
+                </div>
+                <div>
+                    <label for="native-name">Name in Native Language Character:</label>
+                    <input type="text" id="native-name" name="native-name">
+                </div>
+                <div class="form-inline">
+                    <div>
+                        <label for="gender">Gender:</label>
+                        <select id="gender" name="gender">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="religion">Religion:</label>
+                        <input type="text" id="religion" name="religion">
+                    </div>
+                    <div>
+                        <label for="civil-status">Civil Status:</label>
+                        <select id="civil-status" name="civil-status">
+                            <option value="single">Single</option>
+                            <option value="married">Married</option>
+                            <option value="divorced">Divorced</option>
+                            <option value="widowed">Widowed</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-inline">
+                    <div>
+                        <label for="dob">Date of Birth (mm/dd/yyyy):</label>
+                        <input type="date" id="dob" name="dob">
+                    </div>
+                    <div>
+                        <label for="place-of-birth">Place of Birth:</label>
+                        <input type="text" id="place-of-birth" name="place-of-birth">
+                    </div>
+                    <div>
+                        <label for="nationality">Nationality:</label>
+                        <input type="text" id="nationality" name="nationality">
+                    </div>
+                </div>
+                <div class="form-inline">
+                    <div>
+                        <label for="birth-order">Birth Order:</label>
+                        <input type="text" id="birth-order" name="birth-order">
+                    </div>
+                    <div>
+                        <label for="email">Email Address:</label>
+                        <input type="email" id="email" name="email">
+                    </div>
+                    <div>
+                        <label for="mobile">Mobile Number:</label>
+                        <input type="tel" id="mobile" name="mobile">
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Alien Form Content -->
+        <div id="alien-status" class="form-section">
+            <h3>IB - Alien Status</h3>
+            <form>
+                <div class="form-inline">
+                    <div>
+                        <label for="visa-status">Visa Status:</label>
+                        <input type="text" id="visa-status" name="visa-status">
+                    </div>
+                    <div>
+                        <label for="authorized-stay">Authorized Stay:</label>
+                        <input type="text" id="authorized-stay" name="authorized-stay">
+                    </div>
+                </div>
+
+                <div class="form-inline">
+                    <div>
+                        <label for="passport-number">Passport Number:</label>
+                        <input type="text" id="passport-number" name="passport-number">
+                    </div>
+                    <div>
+                        <label for="place-of-issue">Place of Issue:</label>
+                        <input type="text" id="place-of-issue" name="place-of-issue">
+                    </div>
+                    <div>
+                        <label for="pass-expiration">Expiration Date:</label>
+                        <input type="date" id="pass-expiration" name="pass-expiration">
+                    </div>
+                </div>
+
+                <div class="form-inline">
+                    <div>
+                        <label for="acr-number">ACR Number:</label>
+                        <input type="text" id="acr-number" name="acr-number">
+                    </div>
+                    <div>
+                        <label for="acr-date-of-issue">Date of Issue:</label>
+                        <input type="date" id="acr-date-of-issue" name="acr-date-of-issue">
+                    </div>
+                    <div>
+                        <label for="acr-expiration">Expiration Date:</label>
+                        <input type="date" id="acr-expiration" name="acr-expiration">
+                    </div>
+                </div>
+
+                <div class="form-inline">
+                    <div>
+                        <label for="crts-number">CRTS Number:</label>
+                        <input type="text" id="crts-number" name="crts-number">
+                    </div>
+                    <div>
+                        <label for="crts-date-of-issue">Date of Issue:</label>
+                        <input type="date" id="crts-date-of-issue" name="crts-date-of-issue">
+                    </div>
+                    <div>
+                        <label for="crts-expiration">Expiration Date:</label>
+                        <input type="date" id="crts-expiration" name="crts-expiration">
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+        <!-- Residence Data Content -->
+        <div id="residence-data" class="form-section">
+            <h3>II - Residence Data</h3>
+
+            <form>
+                <!-- Home Address -->
+                <p><u>Home Address:</u></p>
+                <div class="form-inline">
+                    <div>
+                        <label for="home-street">Apartment Name / House No. / Street / Baranggay:</label>
+                        <input type="text" id="home-street" name="home-street">
+                    </div>
+                    <div>
+                        <label for="home-city">City / Municipality:</label>
+                        <input type="text" id="home-city" name="home-city">
+                    </div>
+                </div>
+
+                <div class="form-inline">
+                    <div>
+                        <label for="home-province">Province / State:</label>
+                        <input type="text" id="home-province" name="home-province">
+                    </div>
+                    <div>
+                        <label for="home-country">Country:</label>
+                        <input type="text" id="home-country" name="home-country">
+                    </div>
+                </div>
+
+                <div class="form-inline">
+                    <div>
+                        <label for="home-zip">Zipcode:</label>
+                        <input type="text" id="home-zip" name="home-zip">
+                    </div>
+                    <div>
+                        <label for="home-tel-no">Telephone No.:</label>
+                        <input type="text" id="home-tel-no" name="home-tel-no">
+                    </div>
+                </div>
+
+                <!-- Current Contact Address -->
+                <p><u>Home Address:</u></p>
+                <div class="form-inline">
+                    <div>
+                        <label for="current-person">Contact Person / Guardian Name:</label>
+                        <input type="text" id="current-person" name="current-person">
+                    </div>
+                    <div>
+                        <label for="current-relation">Relation:</label>
+                        <input type="text" id="current-relation" name="current-relation">
+                    </div>
+                </div>
+
+                <div class="form-inline">
+                    <div>
+                        <label for="current-street">Apartment Name / House No. / Street / Baranggay:</label>
+                        <input type="text" id="current-street" name="current-street">
+                    </div>
+                    <div>
+                        <label for="current-city">City / Municipality:</label>
+                        <input type="text" id="current-city" name="current-city">
+                    </div>
+                </div>
+
+                <div class="form-inline">
+                    <div>
+                        <label for="current-province">Province / State:</label>
+                        <input type="text" id="current-province" name="current-province">
+                    </div>
+                    <div>
+                        <label for="current-country">Country:</label>
+                        <input type="text" id="current-country" name="current-country">
+                    </div>
+                </div>
+
+                <div class="form-inline">
+                    <div>
+                        <label for="current-zip">Zipcode:</label>
+                        <input type="text" id="current-zip" name="current-zip">
+                    </div>
+                    <div>
+                        <label for="current-tel-no">Telephone No.:</label>
+                        <input type="text" id="current-tel-no" name="current-tel-no">
+                    </div>
+                </div>
+
+                <div class="form-inline">
+                    <div>
+                        <label for="current-email">Email:</label>
+                        <input type="text" id="current-email" name="current-email">
+                    </div>
+                </div>
+
+                <!-- Emergency Contact Address -->
+                <p><u>Home Address:</u></p>
+                <div class="form-inline">
+                    <div>
+                        <label for="emergency-person">Contact Person / Guardian Name:</label>
+                        <input type="text" id="emergency-person" name="emergency-person">
+                    </div>
+                    <div>
+                        <label for="emergency-relation">Relation:</label>
+                        <input type="text" id="emergency-relation" name="emergency-relation">
+                    </div>
+                </div>
+
+                <div class="form-inline">
+                    <div>
+                        <label for="emergency-street">Apartment Name / House No. / Street / Baranggay:</label>
+                        <input type="text" id="emergency-street" name="emergency-street">
+                    </div>
+                    <div>
+                        <label for="emergency-city">City / Municipality:</label>
+                        <input type="text" id="emergency-city" name="emergency-city">
+                    </div>
+                </div>
+
+                <div class="form-inline">
+                    <div>
+                        <label for="emergency-province">Province / State:</label>
+                        <input type="text" id="emergency-province" name="emergency-province">
+                    </div>
+                    <div>
+                        <label for="emergency-country">Country:</label>
+                        <input type="text" id="emergency-country" name="emergency-country">
+                    </div>
+                </div>
+
+                <div class="form-inline">
+                    <div>
+                        <label for="emergency-zip">Zipcode:</label>
+                        <input type="text" id="emergency-zip" name="emergency-zip">
+                    </div>
+                    <div>
+                        <label for="emergency-tel-no">Telephone No.:</label>
+                        <input type="text" id="emergency-tel-no" name="emergency-tel-no">
+                    </div>
+                </div>
+
+                <div class="form-inline">
+                    <div>
+                        <label for="emergency-email">Email:</label>
+                        <input type="text" id="emergency-email" name="emergency-email">
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+
+        <!-- Physical Description Content -->
+        <div id="physical-description" class="form-section">
+            <h3>III - Physical Description</h3>
+
+        </div>
+
+        <!-- Family Data Content -->
+        <div id="family-data" class="form-section">
+            <h3>IV - Family Data</h3>
+
+        </div>
+
+        <!-- Educational Background Content -->
+        <div id="education-background" class="form-section">
+            <h3>V - Educational Background</h3>
+
+        </div>
+
+        <!-- General Qualification Content -->
+        <div id="general-qualification" class="form-section">
+            <h3>VI - General Qualification</h3>
+
+        </div>
+
+        <!-- References Content -->
+        <div id="references" class="form-section">
+            <h3>VII - References</h3>
+            <!-- Other Information Form Content -->
+        </div>
+
+        <!-- Buttons -->
+        <div class="form-buttons">
+            <button type="button">Save</button>
+            <a href="history-page.html">View Edit History</a>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.navbar ul li a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                const headerOffset = 100;
+                const elementPosition = target.offsetTop;
+                const offsetPosition = elementPosition - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

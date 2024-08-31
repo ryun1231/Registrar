@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+     @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap');
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0; /* Optional: change the background color */
+            font-family: 'Poppins', 'sans-serif';
+        }
+
+    .container {
+            text-align: center;
+            padding: 40px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            max-width: 1000px;
+            width: 200%;
+        }
+
+     .container h2 {
+        color: #3FA2F6;
+        }
+
+     .container header{
+        font-weight: bold;
+        font-size: 20px;
+    }
+
+    .container .under{
+        font-weight: bold;
+        font-style: oblique;
+        margin-top: 40px;
+    }
+
+    .container form .fields{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 400px;
+      
+    }
+
+    form .fields .input-field{
+    text-align: left;
+    display: flex;
+    width: calc(100%/ 2 - 10px);
+    flex-direction: column;
+    margin-top: 10px;
+    }
+
+    .input-field input, select{
+      height: 45px; /* Set a consistent height */
+      width: 300px;
+      padding: 10px; /* Set a consistent padding */
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+
+    .container .buttons-left, .buttons-right{
+      margin-top: 30px;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .buttons-left .btn1, .buttons-right .btn{
+      font-family: 'Poppins', 'sans-serif';
+      font-weight: bold;
+      border-radius: 4px;
+      background-color: white;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      width:  150px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #333; /* Ensure text and icon are visible */
+    }
+
+    .buttons-left .btn1:hover, .buttons-right .btn:hover{
+      background-color: #357ABD;
+      color: white;
+    }
+    
+
+    .buttons-left .btn1 i, .buttons-right .btn i {
+      margin-right: 8px;
+      font-size: 18px; /* Set icon size */
+      color: inherit; /* Ensure icon color matches text color */
+      
+    }
+
+    .container table{
+      width: 100%;
+      margin-top: 30px;
+      border-collapse: collapse;
+      
+    }
+
+    .container table, .container th, .container td{
+      border: none;
+      transition: background-color 0.3s;
+    }
+
+
+    .container th:hover {
+      background-color: #357ABD;
+      color: white;
+    }
+
+    .container tr:hover{
+        background-color: #ccc;
+        
+
+    }
+
+    .container th, .container td{
+      padding: 12px;
+      text-align: center;
+    }
+
+    .container th{
+      background-color: #f4f4f4;
+      font-weight: bold;
+      border-radius: 3px;
+    }
+
+
+
+  </style>
+</head>
+<body>
+    <div class="container">
+    <header>Department With Colleges</header>
+    <form action="#">
+
+       <div class="fields">
+        <div class="input-field">
+            <label>Department Code</label>
+            <input type="text" placeholder="Enter Department Code">
+          </div>
+
+          <div class="input-field">
+            <label>Department Head</label>
+            <input type="text" placeholder="Enter Department Head">
+       </div>
+    </div>
+
+    <form action="#">
+
+        <div class="fields">
+         <div class="input-field">
+             <label>Department Name</label>
+             <input type="text" placeholder="Enter Department Name">
+           </div>
+ 
+           <div class="input-field">
+             <label>Under college of</label>
+             <select>
+                <option value="">Select College</option>
+                <option value="CICS">College of Informatics and Studies</option>
+                <option value="CEA">College of Engineering and Architecture</option>
+                <option value="CBA">College of Business Administration</option>
+             </select>
+
+        </div>
+     </div>
+
+     <div class="buttons-left">
+        <button type="button" class="btn1">
+          <i class="fas fa-save"></i> Save Entry
+        </button>
+        <button type="button" class="btn1">
+          <i class="fas fa-print"></i> Click to print
+        </button>
+      </div>
+
+      <div class="buttons-right">
+        <button type="button" class="btn">
+          <i class="fas fa-history"></i> View history
+        </button>
+        <button type="button" class="btn">
+          <i class="fas fa-edit"></i> Edit/Delete
+        </button>
+      </div>
+
+     <div class="font-under">
+        <header class="under">Existing list of Departments</header>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Department Code</th>
+              <th>Department Name</th>
+              <th>Department Head</th>
+              <th>College Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Oed</td>
+              <td>Distance Education</td>
+              <td>Head</td>
+              <td>Online Education</td>
+            </tr>
+            <tr>
+              <td>NSTP-LTS</td>
+              <td>LTS</td>
+              <td>Head</td>
+              <td>National Program Service</td>
+              
+            </tr>
+            <tr>
+              <td>NSTP-LTS</td>
+              <td>LTS</td>
+              <td>Head</td>
+              <td>National Program Service</td>
+              
+            </tr>
+          </tbody>
+        </table>
+
+     </div>
+     
+     
+    
+
+    
+</body>
+</html>

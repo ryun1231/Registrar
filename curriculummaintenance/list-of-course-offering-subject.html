@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>major Without Credit Unit</title>
+</head>
+<style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .content {
+            margin-left: 60px;
+            padding: 20px;
+            transition: margin-left 0.3s;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        h2 {
+            margin-left: 100px;
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        h3{
+            text-align: center;
+        }
+
+        p {
+            color: #666;
+        }
+
+        .input-group {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            justify-content: space-between;
+        }
+
+        select, input {
+            border: 1px solid #ccc;
+            padding: 5px;
+        }
+
+        /* For Subject List Dropdown Choices */
+        .container {
+            margin: 20px auto;
+            width: 500px;
+            padding: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px; /* Space between dropdowns */
+            justify-content: center ;
+        }
+
+        label {
+            display: block;
+            margin: 5px ;
+            width: 50px; /* Adjust width for alignment */
+        }
+
+        select {
+            width: 150px; /* Adjust width as needed */
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        /*Table inside the content*/
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: center;
+            padding: 8px;
+        }   
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+
+        button { 
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px; /* Adjust gap between icon and text */
+        }
+
+        img {
+            width: 20px; /* Adjust icon size */
+            height: 20px;
+        }
+
+</style>
+<body>
+
+    <div class="content">
+        <h2>List of Course Offering Subjects</h2>
+
+        <div class="container">
+                <label for="subject-code">Subject Code:</label>
+                <div class="input-group">
+                <select id="text">
+                    <option value="">Equal to</option>
+                </select>
+                    <input type="text" id="subject-code" able>
+                </div>
+
+                <label for="subject-title">Subject Title:</label>
+                <div class="input-group">
+                    <select id="text">
+                        <option value="">Equal to</option>
+                    <select>
+                        <input type="text" id="subject-code" able>
+                </div>   
+
+                <button>
+                    <img src="search.png" alt="Search">
+                    <a href="list-of-course-offering-subject.html" class="proceed-button">Search</a>
+                </button>
+
+        </div>
+
+        <div class="table">
+            <hr>
+            <h3>LIST OF CURRICULUM OFFERING A SUBJECT</h3>
+            <hr>
+            <table>
+
+                <tr>
+                  <th>Subject Code</th>
+                  <th>Subject Name</th>
+                  <th>Course (Major)</th>
+                  <th>Curriculum YR List</th>
+                </tr>
+
+                <tr>
+                  <td>MAT001-18</td>
+                  <td>PRE-CALCULUS</td>
+                  <td>BACHELOR OF SCIENCE IN ASTRONOMY</td>
+                  <td>2018-2019</td>
+                </tr>
+
+                <tr>
+                    <td>MAT001-18</td>
+                    <td>PRE-CALCULUS</td>
+                    <td>BACHELOR OF SCIENCE IN CIVIL ENGINEERING (B.S.C.E)</td>
+                    <td>2018-2019</td>
+                  </tr>
+
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td>BACHELOR OF SCIENCE IN ELECTRICAL ENGINEERING</td>
+                    <td>2018-2019</td>
+                  </tr>
+
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td>BACHELOR OF SCIENCE IN INDUSTRIAL ENGINEERING</td>
+                    <td>2018-2019</td>
+                  </tr>
+
+              </table>
+        </div> 
+
+    </div>
+</body>
+</html>

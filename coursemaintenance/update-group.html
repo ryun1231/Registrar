@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subject Categories</title>
+    <style>
+        body, html {
+            margin-top: 45px;
+            font-family: Arial, sans-serif;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .header a {
+            text-decoration: none;
+            margin-right: 10px;
+        }
+        .header img {
+            vertical-align: middle;
+            width: 40px; 
+            height: 40px; 
+        }
+        .header button {
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            background-color: #3FA2F6;
+            border: 1px solid #3FA2F6;
+            padding: 5px 10px;
+            cursor: pointer;
+            color: white;
+            border-radius: 3px;
+        }
+        .header button img {
+            width: 20px; 
+            height: 20px; 
+            margin-right: 5px;
+        }
+        .header button:hover {
+            background-color: #2f6d8a;
+            border-color: #2f6d8a;
+        }
+        .header input {
+            flex: 1;
+            padding: 5px;
+            font-size: 16px;
+            margin-left: 10px;
+        }
+        .header .btn-container {
+            display: flex;
+            align-items: center;
+            margin-left: 10px;
+        }
+        .header .btn-container button {
+            margin-right: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        .edit-btn, .delete-btn {
+            color: black;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Center the icon */
+            font-size: 24px; /* Increase font size for larger icons */
+        }
+        .edit-btn img, .delete-btn img {
+            vertical-align: middle;
+            width: 24px; /* Increase icon size */
+            height: 24px; /* Increase icon size */
+        }
+        .edit-btn {
+            margin-right: 10px;
+        }
+        .delete-btn {
+            margin-right: 0;
+        }
+        .title-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .title-container h3 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+            background-color: #b3b3b3; 
+            padding: 5px; 
+            border-radius: 3px; 
+        }
+        .edit-column, .delete-column {
+            width: 80px; /* Reduce column width */
+        }
+    </style>
+</head>
+<body>
+    <div class="title-container">
+        <h3>COURSE GROUP MAINTENANCE PAGE</h3>
+    </div>
+    <div class="header">
+        <a href="course-maintenance.html">
+            <img src="go-back.png" alt="Go Back">
+        </a>
+        <label for="course-group">Course Group</label>
+        <input type="text" id="course-group" name="course-group">
+        <div class="btn-container">
+            <button id="save-button"><img src="add.png" alt="Add"> Save entry/changes</button>
+            <button id="cancel-button"><img src="cancel.png" alt="Cancel"> Cancel/Clear entries</button>
+        </div>
+    </div>
+    <div class="title-container">
+        <h3>LIST OF EXISTING COURSE GROUP</h3>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>COURSE GROUP</th>
+                <th class="edit-column">EDIT</th>
+                <th class="delete-column">DELETE</th>
+            </tr>
+        </thead>
+        <tbody id="group-table">
+            <!-- Dynamic rows will be inserted here -->
+        </tbody>
+    </table>
+
+    <script>
+        let groups = JSON.parse(localStorage.getItem('groups')) || [];
+        const tableBody = document.getElementById('group-table');
+        const inputField = document.getElementById('course-group');
+        const saveButton = document.getElementById('save-button');
+        const cancelButton = document.getElementById('cancel-button');
+        let currentEditingIndex = null;
+
+        function renderTable() {
+            tableBody.innerHTML = '';
+            groups.sort();
+
+            groups.forEach((group, index) => {
+                const row = document.createElement('tr');
+
+                const groupCell = document.createElement('td');
+                groupCell.textContent = group;
+                row.appendChild(groupCell);
+
+                const editCell = document.createElement('td');
+                editCell.className = 'edit-column';
+                const editButton = document.createElement('span');
+                editButton.className = 'edit-btn';
+                editButton.innerHTML = '<img src="edit.png" alt="Edit">';
+                editButton.addEventListener('click', () => {
+                    inputField.value = group;
+                    currentEditingIndex = index;
+                });
+                editCell.appendChild(editButton);
+                row.appendChild(editCell);
+
+                const deleteCell = document.createElement('td');
+                deleteCell.className = 'delete-column';
+                const deleteButton = document.createElement('span');
+                deleteButton.className = 'delete-btn';
+                deleteButton.innerHTML = '<img src="delete.png" alt="Delete">';
+                deleteButton.addEventListener('click', () => {
+                    groups.splice(index, 1);
+                    localStorage.setItem('groups', JSON.stringify(groups));
+                    renderTable();
+                });
+                deleteCell.appendChild(deleteButton);
+                row.appendChild(deleteCell);
+
+                tableBody.appendChild(row);
+            });
+        }
+
+        saveButton.addEventListener('click', () => {
+            const newGroup = inputField.value.trim();
+            if (newGroup) {
+                if (currentEditingIndex !== null) {
+                    groups[currentEditingIndex] = newGroup;
+                    currentEditingIndex = null;
+                } else {
+                    groups.push(newGroup);
+                }
+                localStorage.setItem('groups', JSON.stringify(groups));
+                inputField.value = '';
+                renderTable();
+            }
+        });
+
+        cancelButton.addEventListener('click', () => {
+            inputField.value = '';
+            currentEditingIndex = null;
+        });
+
+        renderTable();
+    </script>
+</body>
+</html>

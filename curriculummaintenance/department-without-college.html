@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap');
+    body, html {
+      height: 100%;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f0f0f0; /* Optional: change the background color */
+    }
+
+    header{
+        font-size: large;
+        font-weight: bold;
+        font-family: 'Poppins', 'Sans-serif';
+    }
+
+    .under{
+
+        font-size: large;
+        font-weight: bold;
+        font-family: 'Poppins', 'Sans-serif';
+        font-style: italic;
+    }
+
+    .container {
+      text-align: center;
+      padding: 40px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      max-width: 1000px;
+      width: 100%;
+    }
+
+    .container h2 {
+      color: #3FA2F6;
+    }
+
+    form .field, select {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start; /* Align items to the start (left) */
+      font-family: 'Poppins', 'Sans-serif';
+    }
+
+    .input-field, select {
+      width: 100%;
+      max-width: 1000px; /* Increased max-width for wider input fields */
+      text-align: left;
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column; /* Arrange label and input vertically */
+    }
+
+    .input-field label {
+      margin-bottom: 8px; /* Space between label and input */
+      font-weight: bold;
+      color: #333;
+    }
+
+    .input-field input, select {
+      width: 900px; /* Input field takes the full width */
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+
+    .container .buttons-left, .buttons-right {
+      margin-top: 30px;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .buttons-left .btn1, .buttons-right .btn {
+      font-family: 'Poppins', 'sans-serif';
+      font-weight: bold;
+      border-radius: 4px;
+      background-color: white;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      width: 150px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #333; /* Ensure text and icon are visible */
+    }
+
+    .buttons-left .btn1:hover, .buttons-right .btn:hover {
+      background-color: #357ABD;
+      color: white;
+    }
+
+    .buttons-left .btn1 i, .buttons-right .btn i {
+      margin-right: 8px;
+      font-size: 18px; /* Set icon size */
+      color: inherit; /* Ensure icon color matches text color */
+    }
+
+    .container table {
+      width: 100%;
+      margin-top: 30px;
+      border-collapse: collapse;
+      font-family: 'Poppins', 'Sans-serif';
+    }
+
+    .container table, .container th, .container td {
+      border: none;
+      transition: background-color 0.3s;
+    }
+
+    .container th:hover {
+      background-color: #357ABD;
+      color: white;
+    }
+
+    .container tr:hover {
+      background-color: #ccc;
+    }
+
+    .container th, .container td {
+      padding: 12px;
+      text-align: center;
+    }
+
+    .container th {
+      background-color: #f4f4f4;
+      font-weight: bold;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>Department Without Colleges</header>
+
+    <form action="#">
+      <div class="field">
+        <div class="input-field">
+          <label>Department Code</label>
+          <input type="text" placeholder="Input here">
+        </div>
+
+        <div class="input-field">
+          <label>Department Name</label>
+          <select>
+            <option value="">Select Department name</option>
+            <option value="Accounting">Accounting Department</option>
+            <option value="ASFAO">Admission, Scholarship and Financial Assistance office</option>
+            <option value="ALS">Alternative learning system</option>
+            <option value="ASC">ASEAN studies Center</option>
+         </select>
+        </div>
+      </div>
+    </form>
+
+    <div class="buttons-left">
+      <button type="button" class="btn1">
+        <i class="fas fa-save"></i> Save Entry
+      </button>
+      <button type="button" class="btn1">
+        <i class="fas fa-print"></i> Click to print
+      </button>
+    </div>
+
+    <div class="buttons-right">
+      <button type="button" class="btn">
+        <i class="fas fa-history"></i> View history
+      </button>
+      <button type="button" class="btn">
+        <i class="fas fa-edit"></i> Edit/Delete
+      </button>
+    </div>
+
+    <div class="font-under">
+      <header class="under">Existing list of Departments</header>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Department Code</th>
+            <th>Department Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Accounting</td>
+            <td>Accounting Department</td>
+          </tr>
+          <tr>
+            <td>ASFAO</td>
+            <td>Admission, Scholarship and Financial Assistance office</td>
+          </tr>
+          <tr>
+            <td>ALS</td>
+            <td>Alternative learning system</td>
+          </tr>
+
+          <tr>
+            <td>ASC</td>
+            <td>ASEAN studies Center</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

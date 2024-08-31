@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subject Pre-Requisite Maintenance</title>
+    <style>
+        body, html {
+            margin-top: 45px;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .header {
+            margin-bottom: 20px;
+        }
+
+        .header a.button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #3FA2F6;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .header a.button:hover {
+            background-color: #2f6d8a;
+        }
+
+        .subject-details, .filter-section, .form-section {
+            margin-top: 20px;
+        }
+
+        .subject-details label, .filter-section label, .form-section label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .filter-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .filter-section label {
+            margin: 0;
+        }
+
+        .filter-section input {
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            flex: 1;
+        }
+
+        .filter-section button {
+            padding: 10px 20px;
+            background-color: #3FA2F6;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .filter-section button:hover {
+            background-color: #2f6d8a;
+        }
+
+        .form-section {
+            margin-top: 20px;
+        }
+
+        .form-section .row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .form-section .row label {
+            margin: 0;
+        }
+
+        .form-section input, .form-section select {
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .form-section button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            background-color: #3FA2F6;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .form-section button:hover {
+            background-color: #2f6d8a;
+        }
+
+        .preReq-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .preReq-dropdown {
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .checkbox-row {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .checkbox-row input {
+            margin-right: 5px;
+        }
+        .title-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .title-container h3 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+            background-color: #b3b3b3; 
+            padding: 5px; 
+            border-radius: 3px; 
+        }
+    </style>
+</head>
+<body>
+    <div class="title-container">
+        <h3>COURSE PRE-REQUISITE MAINTENANCE</h3>
+    </div>
+    <div class="container">
+        <div class="header">
+            <a href="course-maintenance.html" class="button">Go Back</a>
+        </div>
+        <div class="subject-details">
+            <label>Subject Code:</label><br>
+            <label>Subject Category:</label><br>
+            <label>Subject Title:</label>
+        </div>
+        <hr>
+        <div class="filter-section">
+            <label>To filter subject display enter subject code starts with</label>
+            <input type="text" id="subjectCodeFilter">
+            <label>and click</label>
+            <button onclick="refreshList()">Refresh</button>
+        </div>
+        <div class="form-section">
+            <div class="preReq-row">
+                <label for="preReqSubject">Pre-requisite subject(s):</label>
+                <input type="text" id="preReqSubject">
+                <span>Enter subject code to scroll the list</span>
+            </div>
+            <div class="preReq-dropdown">
+                <select id="preReqDropdown">
+                    <option value="">N/A</option>
+                </select>
+            </div>
+            <div class="row">
+                <label for="yearLevel">Pre-requisite year level standing:</label>
+                <select id="yearLevel">
+                    <option value="">N/A</option>
+                </select>
+            </div>
+            <div class="checkbox-row">
+                <input type="checkbox" id="isCoReq">
+                <label for="isCoReq">Is Co-Requisite?</label>
+            </div>
+            <button onclick="addEntry()">Add</button>
+        </div>
+        <hr>
+        <div class="title-container">
+            <h3>EXISTING PRE-REQUISITE COURSES FOR: </h3>
+        </div>
+    </div>
+</body>
+</html>

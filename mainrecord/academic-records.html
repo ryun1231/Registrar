@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Records from other School</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 70vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            display: flex;
+            gap: 20px;
+        }
+
+        .form-container,
+        .transcript-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        .form-container h2,
+        .transcript-container h3 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .form-container h2 {
+            font-size: 24px;
+        }
+
+        .transcript-container h3 {
+            font-size: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: #555;
+            flex: 1 0 100%;
+        }
+
+        .form-group input[type="text"] {
+            flex: 1;
+            padding: 8px 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-group button {
+            padding: 9px 15px;
+            font-size: 18px;
+            color: #fff;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .form-group button:hover {
+            background-color: #0056b3;
+        }
+
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+
+        .form-group select option {
+            padding: 10px;
+        }
+
+        .transcript-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .transcript-table th,
+        .transcript-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .transcript-table th {
+            background-color: #f2f2f2;
+        }
+
+        .transcript-container {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h2>Academic Records from other School</h2>
+            <div class="form-group">
+                <input type="text" id="student-id" name="student-id" placeholder="Enter Student ID No.">
+                <button type="button" onclick="generateTranscript()">➤</button>
+            </div>
+            <div class="form-group">
+                <select id="document" name="document">
+                    <option>TOR</option>
+                    <option>F137</option>
+                    <option>F138</option>
+                    <option>Good Moral</option>
+                    <option>Birth Certificate</option>
+                    <option>Patotoo</option>
+                    <option>GSPIS</option>
+                    <option>Certificate of Grades</option>
+                </select>
+            </div>
+        </div>
+        <div class="transcript-container" id="transcriptContainer">
+            <h3>Transcript of Records</h3>
+            <table class="transcript-table">
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Grade</th>
+                        <th>Credits</th>
+                    </tr>
+                </thead>
+                <tbody id="transcriptBody">
+                    <!-- Sample records will be inserted here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function generateTranscript() {
+            const transcriptContainer = document.getElementById('transcriptContainer');
+            const transcriptBody = document.getElementById('transcriptBody');
+            transcriptBody.innerHTML = `
+                <tr>
+                    <td>Mathematics</td>
+                    <td>90</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>Science</td>
+                    <td>88</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>History</td>
+                    <td>85</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>English</td>
+                    <td>92</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>Physical Education</td>
+                    <td>95</td>
+                    <td>2</td>
+                </tr>
+            `;
+            transcriptContainer.style.display = 'block';
+        }
+    </script>
+</body>
+
+</html>

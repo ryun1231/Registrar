@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluation of Grades</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+        }
+
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+            box-sizing: border-box;
+        }
+
+        .eval-of-grades {
+            text-align: center;
+            padding: 40px;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 1000px;
+            box-sizing: border-box;
+            margin: auto;
+            position: relative;
+            transition: width 0.3s ease, margin-bottom 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .eval-of-grades.expanded {
+            width: 90%;
+        }
+
+        .header-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .header-container h2 {
+            margin: 0;
+            font-size: 24px;
+            text-align: center;
+            flex: 1;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-button {
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f4f4f4;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .dropdown-button:hover {
+            background-color: #e0e0e0;
+        }
+
+        .dropdown-content select {
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f4f4f4;
+            cursor: pointer;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .search-container {
+            display: flex;
+            align-items: flex-start;
+            width: 100%;
+            gap: 20px;
+        }
+
+        .search-section {
+            flex: 1;
+            text-align: left;
+        }
+
+        .search-section input {
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-top: 15px;
+            margin-right: 10px;
+            transition: border-color 0.3s;
+        }
+
+        .search-section input:focus {
+            border-color: #3FA2F6;
+            outline: none;
+        }
+
+        .search-section button {
+            padding: 11px 30px;
+            font-size: 16px;
+            color: white;
+            background: linear-gradient(135deg, #3FA2F6, #007bb5);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            margin-top: 15px;
+        }
+
+        .search-section button:hover {
+            background: linear-gradient(135deg, #007bb5, #3FA2F6);
+            transform: translateY(-2px);
+        }
+
+        .content-frame {
+            flex: 3;
+            text-align: left;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 10px;
+        }
+
+        .content-frame .full-width {
+            grid-column: span 2;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .student-info {
+            display: none;
+            margin-top: 20px;
+            text-align: left;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            transition: opacity 0.3s, transform 0.3s;
+            animation: fadeOut 0.5s forwards;
+        }
+
+        .student-info.show {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+            animation: fadeIn 0.5s forwards;
+        }
+
+        .table-header {
+            display: block;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .semester-filter {
+            display: flex;
+            align-items: center;
+        }
+
+        .semester-filter label {
+            margin-right: 20px;
+            font-size: 16px;
+        }
+
+        .semester-filter input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #ddd;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr.passed {
+            background-color: #d4edda;
+        }
+
+        tr.failed {
+            background-color: #f8d7da;
+        }
+
+        .no-border th,
+        .no-border td {
+            border: none;
+        }
+
+        .header-filter {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .header-filter h3 {
+            margin: 0;
+            font-size: 18px;
+            text-align: center;
+            flex: 1;
+        }
+
+        .header-filter .filter-options {
+            display: flex;
+            gap: 10px;
+        }
+
+        .header-filter label {
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="eval-of-grades">
+        <div class="header-container">
+            <h2>Evaluation of Grades</h2>
+            <div class="dropdown">
+                <div class="dropdown-content">
+                    <select>
+                        <option>1st Year</option>
+                        <option>2nd Year</option>
+                        <option>3rd Year</option>
+                        <option>4th Year</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="search-container">
+            <div class="search-section">
+                <input type="text" id="studentID" placeholder="Enter Student ID">
+                <button onclick="searchStudent()">Search</button>
+            </div>
+
+            <div class="content-frame">
+                <div>
+                    <p><strong>Student Name:</strong> John Doe</p>
+                </div>
+                <div>
+                    <p><strong>Year:</strong> 3rd Year</p>
+                </div>
+                <div>
+                    <p><strong>Units Required:</strong> 158.00</p>
+                </div>
+                <div>
+                    <p><strong>Course/Major:</strong> Computer Science</p>
+                </div>
+                <div>
+                    <p><strong>Status:</strong> Regular</p>
+                </div>
+                <div>
+                    <p><strong>Units Taken:</strong> 116.00</p>
+                </div>
+                <div class="full-width">
+                    <p><strong>GWA:</strong> 1.27</p>
+                    <div class="legend">
+                        <p><strong>Color Legend:</strong> <span
+                                style="background-color: #d4edda; padding: 5px 10px; border-radius: 5px;">Passed</span>
+                            <span
+                                style="background-color: #f8d7da; padding: 5px 10px; border-radius: 5px;">Failed</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="student-info" id="studentInfo">
+            <div class="table-header">
+                <div class="semester-filter">
+                    <label>
+                        <input type="radio" name="semester" value="1st" checked> 1st Sem
+                    </label>
+                    <label>
+                        <input type="radio" name="semester" value="2nd"> 2nd Sem
+                    </label>
+                </div>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Subject Code</th>
+                        <th>Subject Description</th>
+                        <th>Total Units</th>
+                        <th>Credit Earned</th>
+                        <th>Grade</th>
+                        <th>Remark</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="6"><u>1st Year, 1st Sem</u></td>
+                    </tr>
+                    <tr class="passed">
+                        <td>CS101</td>
+                        <td>Introduction to Computer Science</td>
+                        <td>3</td>
+                        <td>3</td>
+                        <td>1.50</td>
+                        <td>Passed</td>
+                    </tr>
+                    <tr class="passed">
+                        <td>MA101</td>
+                        <td>Mathematics I</td>
+                        <td>3</td>
+                        <td>3</td>
+                        <td>2.00</td>
+                        <td>Passed</td>
+                    </tr>
+                    <tr>
+                        <td colspan="6"><u>1st Year, 2nd Sem</u></td>
+                    </tr>
+                    <tr class="failed">
+                        <td>CS102</td>
+                        <td>Data Structures</td>
+                        <td>3</td>
+                        <td>3</td>
+                        <td>4.25</td>
+                        <td>Failed</td>
+                    </tr>
+                    <tr class="failed">
+                        <td>PH101</td>
+                        <td>Physics I</td>
+                        <td>3</td>
+                        <td>3</td>
+                        <td>5.0</td>
+                        <td>Failed</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <script>
+            function searchStudent() {
+                const studentID = document.getElementById('studentID').value;
+                const studentInfo = document.getElementById('studentInfo');
+                const officialTor = document.querySelector('.eval-of-grades');
+
+                if (studentID) {
+                    studentInfo.classList.add('show');
+                    officialTor.classList.add('expanded');
+                } else {
+                    studentInfo.classList.remove('show');
+                    officialTor.classList.remove('expanded');
+                }
+            }
+        </script>
+    </div>
+</body>
+
+</html>

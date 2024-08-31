@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Form</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .form-container, .table-container {
+            border: 1px solid #ddd;
+            padding: 20px;
+            width: 800px; /* Adjusted width */
+            margin: 20px auto;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: inline-block;
+            width: 100px;
+            vertical-align: top;
+        }
+        .form-group input, .form-group select {
+            width: 150px;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+        .form-group .sy-input {
+            width: 80px;
+        }
+        .form-group .term-input {
+            width: 100px;
+        }
+        .table-container h2 {
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        .center {
+            text-align: center;
+        }
+        .unlock-button {
+            padding: 5px 10px;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+        }
+        .unlock-link {
+            text-decoration: none;
+        }
+        button, a.button {
+            width: auto;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        button:hover, a.button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Unlocking Of Grades</h2>
+        <form>
+            <div class="form-group">
+                <label for="facultyId">Faculty ID:</label>
+                <input type="text" id="facultyId" name="facultyId">
+            </div>
+            <div class="form-group">
+                <label for="syStart">SY / Term:</label>
+                <select id="syStart" name="syStart" class="sy-input" onchange="setEndYear()">
+                    <!-- Options will be populated by JavaScript -->
+                </select> -
+                <select id="syEnd" name="syEnd" class="sy-input" disabled>
+                    <!-- End year will be set by JavaScript -->
+                </select>
+                <select id="term" name="term" class="term-input">
+                    <option value="1st">1st Term</option>
+                    <option value="2nd">2nd Term</option>
+                </select>
+            </div>
+            <a href="listofunlocking.html" class="button">Proceed</a>
+        </form>
+    </div>
+    
+    <div class="table-container">
+        <h2>Faculty list loading</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Subject Code</th>
+                    <th>Subject Name</th>
+                    <th>Section</th>
+                    <th>Finals Unlock All</th>
+                    <th>Finals Unlock One</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>00001</td>
+                    <td>Capstone Project 1</td>
+                    <td>Section 1</td>
+                    <td class="center"><button class="unlock-button">Unlock</button></td>
+                    <td class="center"><a href="unlockone.html" class="unlock-link"><button class="unlock-button">Unlock one</button></a></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td class="center">&nbsp;</td>
+                    <td class="center">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td class="center">&nbsp;</td>
+                    <td class="center">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td class="center">&nbsp;</td>
+                    <td class="center">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td class="center">&nbsp;</td>
+                    <td class="center">&nbsp;</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function proceed() {
+            alert("Proceed button clicked!");
+        }
+
+        function setEndYear() {
+            const startYear = document.getElementById('syStart').value;
+            const endYear = parseInt(startYear) + 1;
+            document.getElementById('syEnd').innerHTML = `<option value="${endYear}">${endYear}</option>`;
+        }
+
+        function populateYears() {
+            const startYearSelect = document.getElementById('syStart');
+            const currentYear = new Date().getFullYear();
+            for (let year = 2000; year <= currentYear; year++) {
+                startYearSelect.innerHTML += `<option value="${year}">${year}</option>`;
+            }
+        }
+
+        window.onload = function() {
+            populateYears();
+            setEndYear(); // Set initial end year based on the current selection
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Official Transcript of Records of Candidate for Graduation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+        }
+
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+            box-sizing: border-box;
+        }
+
+        .official-tor {
+            text-align: center;
+            padding: 40px;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 1000px;
+            box-sizing: border-box;
+            margin: auto;
+            position: relative;
+            transition: width 0.3s ease, margin-bottom 0.3s ease;
+        }
+
+        .official-tor.expanded {
+            width: 90%;
+        }
+
+        .content-frame {
+            margin-top: 20px;
+            text-align: left;
+            overflow-x: auto;
+        }
+
+        .content-frame h3 {
+            margin-bottom: 10px;
+        }
+
+        .content-frame .row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .content-frame .row div {
+            width: 45%;
+        }
+
+        .content-frame .input-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .content-frame .input-row div {
+            display: flex;
+            align-items: center;
+        }
+
+        .content-frame .input-box {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+            margin-left: 10px;
+            background-color: #f0f0f0;
+        }
+
+        .content-frame .input-box:read-only {
+            background-color: #e0e0e0;
+            cursor: default;
+        }
+
+        .input-box-ncee {
+            width: 70px;
+        }
+
+        .input-box-gsa {
+            width: 70px;
+        }
+
+        .input-box-excludedsubjects {
+            width: 50px;
+        }
+
+        .input-box-percentile {
+            width: 150px;
+        }
+
+        .search-section {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .search-section input {
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-top: 15px;
+            margin-right: 10px;
+            transition: border-color 0.3s;
+        }
+
+        .search-section input:focus {
+            border-color: #3FA2F6;
+            outline: none;
+        }
+
+        .search-section button {
+            padding: 11px 30px;
+            font-size: 16px;
+            color: white;
+            background: linear-gradient(135deg, #3FA2F6, #007bb5);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .search-section button:hover {
+            background: linear-gradient(135deg, #007bb5, #3FA2F6);
+            transform: translateY(-2px);
+        }
+
+        .student-info {
+            display: none;
+            margin-top: 20px;
+            text-align: left;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            transition: opacity 0.3s, transform 0.3s;
+            animation: fadeOut 0.5s forwards;
+        }
+
+        .student-info.show {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+            animation: fadeIn 0.5s forwards;
+        }
+
+        .update-container {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            color: #3FA2F6;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        .update-container:hover {
+            color: #007bb5;
+        }
+
+        .update-icon {
+            margin-left: 10px;
+            font-size: 32px;
+        }
+
+        .map-subject-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            color: #3FA2F6;
+            cursor: pointer;
+            transition: color 0.3s;
+            font-size: 16px;
+        }
+
+        .map-subject-group:hover {
+            color: #007bb5;
+        }
+
+        .map-icon {
+            margin-left: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="official-tor">
+        <h2>Official Transcript of Records of Candidate for Graduation</h2>
+
+        <div class="search-section">
+            <input type="text" id="studentID" placeholder="Enter Student ID">
+            <button onclick="searchStudent()">Search</button>
+        </div>
+
+        <div class="student-info" id="studentInfo">
+            <div class="content-frame">
+                <div class="input-row">
+                    <div>
+                        <label for="ncee">NCEE:</label>
+                        <input type="text" id="ncee" class="input-box input-box-ncee" readonly>
+                    </div>
+                    <div>
+                        <label for="gsa">GSA:</label>
+                        <input type="text" id="gsa" class="input-box input-box-gsa" readonly>
+                    </div>
+                    <div>
+                        <label for="percentile">Percentile Rank:</label>
+                        <input type="text" id="percentile" class="input-box input-box-percentile" readonly>
+                    </div>
+                </div>
+                <div class="row">
+                    <div>
+                        <p>Last Name: Doe</p>
+                        <p>First Name: John</p>
+                        <p>Middle Name: Butler</p>
+                        <p>Address: 123 Main St, Magdalena City</p>
+                    </div>
+                    <div>
+                        <p>Gender: Male</p>
+                        <p>Date of Birth: January 1, 2000</p>
+                        <p>Place of Birth: Magdalena City</p>
+                    </div>
+                </div>
+            </div>
+            <div class="update-container" onclick="updateStudentInfo()">
+                <span>Update Student Information</span>
+                <i class="fas fa-edit update-icon"></i>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function searchStudent() {
+            const studentID = document.getElementById('studentID').value;
+            const studentInfo = document.getElementById('studentInfo');
+            const officialTor = document.querySelector('.official-tor');
+
+            if (studentID) {
+                studentInfo.classList.add('show'); // Show the student info div
+                officialTor.classList.add('expanded'); // Adjust the width of the official-tor
+            } else {
+                studentInfo.classList.remove('show'); // Hide the student info div
+                officialTor.classList.remove('expanded'); // Revert the width of the official-tor
+            }
+        }
+
+        function updateStudentInfo() {
+            window.location.href = 'update-student-info.html';
+        }
+    </script>
+</body>
+
+</html>
