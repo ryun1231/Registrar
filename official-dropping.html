@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap');
+    body, html {
+        height: 100%;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f0f0f0;
+        font-family: 'Poppins', 'sans-serif';
+    }
+
+    .container {
+        text-align: center;
+        padding: 40px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        max-width: 1000%;
+        width: 200%;
+    }
+
+    .container header{
+      margin-top: 1%;
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    .container .under {
+      margin-top: 30px;
+      font-size: large;
+      font-weight: bold;
+      font-family: 'Poppins', 'Sans-serif';
+      font-style: italic;
+    }
+
+    .container form {
+      position: relative;
+      margin-top: 30px;
+      min-height: 490px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container .fields {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .input-field {
+      width: 100%;
+      max-width: 500px; 
+    }
+
+    .input-field input {
+      height: 30px; 
+      padding: 10px; 
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+      font-size: 14px;
+      width: 100%; 
+
+    }
+
+    .container .buttons-left, .buttons-right {
+      margin-top: 30px;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .save .sv {
+      font-family: 'Poppins', 'sans-serif';
+      font-weight: bold;
+      border-radius: 4px;
+      background-color: white;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      width: 200px;
+      height: 40px;
+      align-items: center;
+      color: #333; 
+      margin-top: 10px;
+    }
+
+    .save .sv i {
+      margin-right: 10px;
+      font-size: 15px;
+      color: inherit;
+    }
+
+    .save .sv:hover {
+      background-color: #357ABD;
+      color: white;
+    }
+
+    .font-under {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container table {
+      width: 80%; 
+      margin-top: 40px;
+      border-collapse: collapse;
+    }
+
+    .container th, .container td {
+      padding: 20px 30px; 
+      text-align: center;
+    }
+
+    .container th {
+      background-color: #f4f4f4;
+      font-weight: bold;
+      border-radius: 3px;
+      min-width: 300px; 
+    }
+
+    .container table, .container th, .container td {
+      border: none;
+      transition: background-color 0.3s;
+    }
+
+    .container th:hover {
+      background-color: #357ABD;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>Official Dropping Subject</header>
+
+    <form action="#">
+      <div class="form first">
+        <div class="details personal">
+          <div class="fields">
+            <div class="input-field">
+              <label>Student Number</label>
+              <input type="text" placeholder="Enter Student Number">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="save">
+        <button type="button" class="sv">
+            <i class="fa fa-save"></i> Show
+        </button>
+      </div>
+
+      <div class="font-under">
+        <header class="under">Official Dropping</header>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Subject Code</th>
+              <th>Subject Title</th>
+              <th>Dropping</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

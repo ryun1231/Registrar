@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Management</title>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .navbar {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            background-color: #3FA2F6;
+            width: 60px;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding-top: 20px;
+            transition: width 0.3s, box-shadow 0.3s;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            z-index: 2;
+        }
+
+        .navbar.expanded {
+            width: 250px;
+            box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .menu-toggle {
+            background-color: #3FA2F6;
+            color: white;
+            border: none;
+            font-size: 30px;
+            cursor: pointer;
+            margin: 10px;
+            transition: transform 0.3s;
+        }
+
+        .menu-toggle:hover {
+            transform: rotate(90deg);
+        }
+
+        .home-icon {
+            width: 30px;
+            height: 30px;
+            margin: 10px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .home-icon:hover {
+            transform: scale(1.3);
+        }
+
+        .menu {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            transition: opacity 0.3s;
+        }
+
+        .navbar.expanded .menu {
+            display: flex;
+            opacity: 1;
+        }
+
+        .menu h2 {
+            color: white;
+            margin: 0;
+            padding-bottom: 20px;
+            font-size: 24px;
+            border-bottom: 1px solid #ffffff50;
+            text-align: center;
+        }
+
+        .menu ul {
+            list-style-type: none;
+            padding: 0;
+            width: 100%;
+        }
+
+        .menu ul li {
+            margin: 10px 0;
+            position: relative;
+        }
+
+        .menu ul li a {
+            color: #f2f2f2;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+            transition: background-color 0.3s, color 0.3s, transform 0.3s;
+        }
+
+        .menu ul li a:hover {
+            background-color: #ffffff20;
+            color: #fff;
+            transform: translateX(5px);
+        }
+
+        .submenu-list {
+            display: none;
+            position: absolute;
+            left: 100%;
+            top: 0;
+            background-color: #3FA2F6;
+            padding: 10px;
+            border-radius: 4px;
+            box-shadow: 5px 0 5px rgba(0, 0, 0, 0.1);
+            transition: opacity 0.3s, transform 0.3s;
+            opacity: 0;
+            transform: translateX(-10px);
+            z-index: 4;
+        }
+
+        .submenu:hover .submenu-list {
+            display: block;
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .submenu-list li {
+            margin: 5px 0;
+        }
+
+        .top-frame {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: calc(100% - 60px);
+            height: 100px;
+            position: fixed;
+            top: 0;
+            left: 60px;
+            background-color: #e9ecef;
+            z-index: 3;
+            transition: left 0.3s, width 0.3s;
+            box-sizing: border-box;
+            padding: 0 20px;
+        }
+        
+
+        .navbar.expanded~.top-frame {
+            left: 250px;
+            width: calc(100% - 250px);
+        }
+
+        .text-center {
+            text-align: center;
+            flex: 1;
+        }
+
+        .top-frame h2,
+        .top-frame h3,
+        .top-frame p {
+            margin: 0;
+            padding-top: 6px;
+            white-space: nowrap;
+            overflow: hidden;
+            color: #666;
+            text-overflow: ellipsis;
+        }
+
+        .logo-container {
+            align-items: center;
+            width: 100px;
+        }
+
+        .logo {
+            max-height: 80px;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .breadcrumbs {
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #e9ecef;
+            border-bottom: 1px solid #ddd;
+            width: calc(100% - 60px);
+            position: fixed;
+            top: 100px;
+            left: 60px;
+            z-index: 3;
+            transition: left 0.3s, width 0.3s;
+            box-sizing: border-box;
+        }
+
+        .navbar.expanded~.breadcrumbs {
+            left: 250px;
+            width: calc(100% - 250px);
+        }
+
+        .breadcrumbs span {
+            color: #666;
+            margin-right: 10px;
+        }
+
+        .breadcrumbs a {
+            color: #3FA2F6;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+        .breadcrumbs a:hover {
+            text-decoration: underline;
+        }
+
+        .content {
+            margin-left: 60px;
+            margin-top: 150px;
+            margin-bottom: 50px;
+            transition: margin-left 0.3s;
+            height: calc(100vh - 150px);
+            overflow-y: auto;
+        }
+
+        .navbar.expanded~.content {
+            margin-left: 250px;
+        }
+
+        .bottom-frame {
+            width: calc(100% - 60px);
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            bottom: 0;
+            left: 60px;
+            background-color: #e9ecef;
+            z-index: 1;
+            transition: left 0.3s, width 0.3s;
+        }
+
+        .navbar.expanded~.bottom-frame {
+            left: 250px;
+            width: calc(100% - 250px);
+        }
+
+        iframe.content-frame {
+            border: none;
+            width: 100%;
+            height: 95%;
+             /* Ensure iframe has at least the viewport height */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+        <a href="#" onclick="navigateHome()"><img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" alt="Home" class="home-icon"></a>
+        <div class="menu" id="menu">
+            <h2>Registrar</h2>
+            <ul>
+                <li class="submenu">
+                    <a href="#" onclick="loadContent('main.html', 'Student Main Record')">Student Main Record</a>
+                    <ul class="submenu-list">
+                        <li><a href="#" onclick="loadContent('mainrecord/main-record.html', 'Main Record')">Main Record</a></li>
+                        <li><a href="#" onclick="loadContent('mainrecord/modification-of-data.html', 'Modification of Data')">Modification of Data</a></li>
+                        <li><a href="#" onclick="loadContent('mainrecord/academic-records.html', 'Academic Records from Other School')">Academic Records from Other School</a></li>
+                        <li><a href="#" onclick="loadContent('mainrecord/credentials-records.html', 'Credentials Records')">Credentials Records</a></li>
+                        <li><a href="#" onclick="loadContent('mainrecord/grade-status.html', 'Grade Status')">Grade Status</a></li>
+                        <li><a href="#" onclick="loadContent('mainrecord/student-schedule.html', 'Student Schedule')">Student Schedule</a></li>
+                        <li><a href="#" onclick="loadContent('mainrecord/residency-status.html', 'Residency Status')">Residency Status</a></li>
+                    </ul>
+                </li>
+                <li class="submenu">
+                    <a href="#" onclick="loadContent('course-maintenance.html', 'Course Maintenance')">Course Maintenance</a>
+                    <ul class="submenu-list">
+                        <li><a href="#" onclick="loadContent('coursemaintenance/course-maintenance.html', 'Course Maintenance')">Course Maintenance</a></li>
+                    </ul>
+                </li>
+                <li class="submenu">
+                    <a href="#" onclick="loadContent('curriculum-maintenance.html', 'Curriculum Maintenance')">Curriculum Maintenance</a>
+                    <ul class="submenu-list">
+                        <li><a href="#" onclick="loadContent('curriculummaintenance/course-programs.html', 'Course Programs')">Course Programs</a></li>
+                        <li><a href="#" onclick="loadContent('curriculummaintenance/colleges.html', 'Colleges')">Colleges</a></li>
+                        <li><a href="#" onclick="loadContent('curriculummaintenance/departments.html', 'Departments')">Departments</a></li>
+                        <li><a href="#" onclick="loadContent('curriculummaintenance/department-without-college.html', 'Department without College')">Department without College</a></li>
+                        <li><a href="#" onclick="loadContent('curriculummaintenance/courses.html', 'Courses')">Courses</a></li>
+                        <li><a href="#" onclick="loadContent('curriculummaintenance/equivalent-subject-for-advising.html', 'Equivalent Subject for Advising')">Equivalent Subject for Advising</a></li>
+                        <li><a href="#" onclick="loadContent('curriculummaintenance/subject-without-credit-unit.html', 'Subject Without Credit Unit')">Subject Without Credit Unit</a></li>
+                        <li><a href="#" onclick="loadContent('curriculummaintenance/course-curriculum.html', 'Course Curriculum')">Course Curriculum</a></li>
+                        <li><a href="#" onclick="loadContent('curriculummaintenance/list-of-course-offering-subject.html', 'List of Course offering Subject')">List of Course offering Subject</a></li>
+                        <li><a href="#" onclick="loadContent('curriculummaintenance/copy-delete-curriculum.html', 'Copy/Delete Curriculum')">Copy/Delete Curriculum</a></li>
+                    </ul>
+                </li>
+                <li class="submenu">
+                    <a href="#" onclick="loadContent('grades-management.html', 'Grades Management')">Grades Management</a>
+                    <ul class="submenu-list">
+                        <li><a href="#" onclick="loadContent('gradesmanagement/encoding-of-grades-status-report.html', 'Encoding of Grades - Status Report')">Encoding of Grades - Status Report</a></li>
+                        <li><a href="#" onclick="loadContent('gradesmanagement/final-report-of-grades.html', 'Final Report of Grades')">Final Report of Grades</a></li>
+                        <li><a href="#" onclick="loadContent('gradesmanagement/rectification-of-grades.html', 'Rectification of Grades')">Rectification of Grades</a></li>
+                        <li><a href="#" onclick="loadContent('gradesmanagement/completion-of-grades.html', 'Completion of Grades')">Completion of Grades</a></li>
+                        <li><a href="#" onclick="loadContent('gradesmanagement/unlocking-of-grades.html', 'Unlocking of Grades')">Unlocking of Grades</a></li>
+                    </ul>
+                </li>
+                <li class="submenu">
+                    <a href="#" onclick="loadContent('reports.html', 'Reports')">Reports</a>
+                    <ul class="submenu-list">
+                        <li><a href="#" onclick="loadContent('reports/official-transcript-of-records.html', 'Official Transcript of Records')">Official Transcript of Records</a></li>
+                        <li><a href="#" onclick="loadContent('reports/official-transcript-of-records-of-candidate-for-graduation.html', 'Official Transcript of Records of Candidate for Graduation')">Official Transcript of Records of Candidate for Graduation</a></li>
+                        <li><a href="#" onclick="loadContent('reports/candidates-for-graduation.html', 'Candidates for Graduation')">Candidates for Graduation</a></li>
+                        <li><a href="#" onclick="loadContent('reports/certification-of-grades.html', 'Certification of Grades')">Certification of Grades</a></li>
+                        <li><a href="#" onclick="loadContent('reports/evaluation-of-grades.html', 'Evaluation of Grades')">Evaluation of Grades</a></li>
+                    </ul>
+                </li>
+                <li><a href="#" onclick="loadContent('official-dropping.html', 'Official Dropping of Subject')">Official Dropping of Subject</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="top-frame">
+        <div class="text-center">
+            <h2>New Era University</h2>
+            <h3>College Department</h3>
+            <p>9 Central Ave, New Era, Quezon City, 1107 Metro Manila</p>
+        </div>
+        <div class="logo-container">
+            <img src="neulogo.png" alt="University Logo" class="logo">
+        </div>
+    </div>
+    <div class="breadcrumbs">
+        <span>Home</span>
+    </div>
+    <div class="content">
+        <iframe id="contentFrame" class="content-frame" src="welcome-page.html"></iframe>
+    </div>
+    <div class="bottom-frame">
+        <span>Copyright 2024</span>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const navbar = document.querySelector('.navbar');
+            navbar.classList.toggle('expanded');
+            document.querySelector('.top-frame').classList.toggle('expanded');
+            document.querySelector('.breadcrumbs').classList.toggle('expanded');
+            document.querySelector('.bottom-frame').classList.toggle('expanded');
+        }
+
+        function loadContent(page, title) {
+            document.getElementById('contentFrame').src = page;
+            updateBreadcrumbs(title);
+            collapseMenu();
+        }
+
+        function navigateHome() {
+            document.getElementById('contentFrame').src = 'welcome-page.html';
+            updateBreadcrumbs('Home');
+            collapseMenu();
+        }
+
+        function updateBreadcrumbs(title) {
+            const breadcrumbs = document.querySelector('.breadcrumbs');
+            breadcrumbs.innerHTML = `<a href="#" onclick="navigateHome()">Home</a> <span>/</span> <span>${title}</span>`;
+        }
+
+        function collapseMenu() {
+            const navbar = document.querySelector('.navbar');
+            if (navbar.classList.contains('expanded')) {
+                navbar.classList.remove('expanded');
+                document.querySelector('.top-frame').classList.remove('expanded');
+                document.querySelector('.breadcrumbs').classList.remove('expanded');
+                document.querySelector('.bottom-frame').classList.remove('expanded');
+            }
+        }
+
+        // Close navbar when clicking outside
+        document.addEventListener('click', function(event) {
+            const navbar = document.querySelector('.navbar');
+            const isClickInside = navbar.contains(event.target) || event.target.matches('.menu-toggle');
+
+            if (!isClickInside && navbar.classList.contains('expanded')) {
+                navbar.classList.remove('expanded');
+                document.querySelector('.top-frame').classList.remove('expanded');
+                document.querySelector('.breadcrumbs').classList.remove('expanded');
+                document.querySelector('.bottom-frame').classList.remove('expanded');
+            }
+        });
+
+        // Collapse navbar when clicking inside the iframe
+        document.getElementById('contentFrame').addEventListener('load', function () {
+            const iframeDocument = document.getElementById('contentFrame').contentDocument || document.getElementById('contentFrame').contentWindow.document;
+            iframeDocument.addEventListener('click', collapseMenu);
+        });
+
+        // Adjust submenu position dynamically
+        document.querySelectorAll('.submenu').forEach(submenu => {
+            submenu.addEventListener('mouseenter', () => {
+                const submenuList = submenu.querySelector('.submenu-list');
+                const bounding = submenuList.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+
+                // Reset top position
+                submenuList.style.top = '0';
+
+                if (bounding.bottom > windowHeight) {
+                    submenuList.style.top = `${windowHeight - bounding.bottom - 20}px`;
+                }
+            });
+
+            submenu.addEventListener('mouseleave', () => {
+                const submenuList = submenu.querySelector('.submenu-list');
+                submenuList.style.top = '0';
+            });
+        });
+    </script>
+</body>
+
+</html>
